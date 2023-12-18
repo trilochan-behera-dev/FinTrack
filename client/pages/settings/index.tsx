@@ -9,7 +9,7 @@ import { getDataFromAPI } from "@src/services/getAllServices";
 import { UserContext } from "@pages/_app";
 import Warnings from "@src/components/Alert/Warning";
 
-export default function settings() {
+export default function Settings() {
     const { setShowAlert } = useContext(UserContext) as any;
     const header = [
         'Category Name', 'Type', 'Color code', 'Action'
@@ -140,7 +140,7 @@ export default function settings() {
                         <div className="h-[61vh] p-8 overflow-auto">
                             <div className="flex flex-col gap-2 overflow-auto">
                                 {newCategory.map((newCat: any, index: number) => (
-                                    <div className="flex gap-2">
+                                    <div className="flex gap-2"  key={index}>
                                         <input
                                             type="text"
                                             placeholder="New Category name"
@@ -185,8 +185,8 @@ export default function settings() {
                                                     addCategory(data)
                                                 }}
                                             >
-                                                {['expense', 'savings', 'income'].map((op: any) => (
-                                                    <option value={op} selected={newCat?.categoryType === op} className="capitalize" >{op}</option>
+                                                {['expense', 'savings', 'income'].map((op: any, index:any) => (
+                                                    <option value={op} selected={newCat?.categoryType === op} className="capitalize" key={index} >{op}</option>
                                                 ))}
                                             </select>
                                             <span className="absolute top-1/2 right-4 z-10 -translate-y-1/2">
@@ -253,8 +253,8 @@ export default function settings() {
                                                                                     className="z-20 w-[155px] appearance-none rounded border border-stroke bg-transparent py-1 pl-4 pr-10 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input capitalize"
                                                                                     onChange={(e) => setUpdatecatData({ ...updatecatData, categoryType: e?.target?.value })}
                                                                                 >
-                                                                                    {['expense', 'savings', 'income'].map((op: any) => (
-                                                                                        <option value={op} selected={packageItem?.categoryType === op} className="capitalize" >{op}</option>
+                                                                                    {['expense', 'savings', 'income'].map((op: any, i:any) => (
+                                                                                        <option value={op} selected={packageItem?.categoryType === op} className="capitalize" key={i}>{op}</option>
                                                                                     ))}
                                                                                 </select>
                                                                                 <span className="absolute top-1/2 right-[80px] z-10 -translate-y-1/2">

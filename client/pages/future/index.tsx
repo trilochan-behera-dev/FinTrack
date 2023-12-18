@@ -3,7 +3,7 @@ import Forms from "@src/components/Forms";
 import TableWithIcon from "@src/components/Tables/TableWithIcon";
 import { useState } from "react";
 
-export default function future() {
+export default function Future() {
     const header = [
         'Start Date', 'End Date', 'Price', 'Next Payment', 'Payment Interval', 'Type', 'Status', 'Action'
     ]

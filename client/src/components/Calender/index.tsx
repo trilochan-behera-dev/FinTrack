@@ -86,8 +86,8 @@ const Calendar = () => {
           <thead>
             <tr className="grid grid-cols-7 rounded-t-sm bg-primary text-white">
               {
-                week.map((w) => (
-                  <th className={`flex h-15 items-center justify-center p-1 text-xs font-semibold sm:text-base xl:p-5 ${w.dayValue === 0 ? 'rounded-tl-sm' : w.dayValue === 6 ? 'rounded-tr-sm' : ''}`}>
+                week.map((w, i) => (
+                  <th className={`flex h-15 items-center justify-center p-1 text-xs font-semibold sm:text-base xl:p-5 ${w.dayValue === 0 ? 'rounded-tl-sm' : w.dayValue === 6 ? 'rounded-tr-sm' : ''}`} key={i}>
                     <span className="hidden lg:block"> {w.fullName} </span>
                     <span className="block lg:hidden"> {w.shortName} </span>
                   </th>
@@ -98,18 +98,18 @@ const Calendar = () => {
           <tbody>
             < tr className="grid grid-cols-7" >
               {
-                dateArray.map((date: any) => (
-                  <td className={`ease relative h-20 cursor-pointer border border-stroke p-2 transition duration-500 hover:bg-gray dark:border-strokedark dark:hover:bg-meta-4 md:h-25 md:p-4 xl:h-28 ${date > 0 && date <= data.length && 'bg-primary bg-opacity-10'}`}>
+                dateArray.map((date: any, i:any) => (
+                  <td className={`ease relative h-20 cursor-pointer border border-stroke p-2 transition duration-500 hover:bg-gray dark:border-strokedark dark:hover:bg-meta-4 md:h-25 md:p-4 xl:h-28 ${date > 0 && date <= data.length && 'bg-primary bg-opacity-10'}`} key={i}>
                     {date > 0 && date <= data.length ?
                       <span className="font-medium text-black dark:text-white flex gap-4">
                         <p className="bg-[#8e8e8e] h-8 w-8 rounded-full flex items-center justify-center text-white text-xs">{date}</p>
                         <div className="text-sm">
-                          {data.map((d: any) => d?.date === date && (
-                            <>
+                          {data.map((d: any, i: any) => d?.date === date && (
+                            <div key={i}>
                               {d.data?.income && <p> {d.data?.income} (Income) </p>}
                               {d.data?.savings && <p> {d.data?.savings} (Savings) </p>}
                               {d.data?.expense && <p> {d.data?.expense} (Expense) </p>}
-                            </>
+                            </div>
                           ))}
                         </div>
                       </span> :

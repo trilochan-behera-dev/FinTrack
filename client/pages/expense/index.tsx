@@ -1,5 +1,4 @@
 import DashboardLayout from "@pages/DashboardLayout";
-import Breadcrumb from "@src/components/Breadcrumbs/Breadcrumb";
 import ChartDaily from "@src/components/Charts/ChartDaily";
 import ChartDonut from "@src/components/Charts/ChartDonut";
 import ChartMonthly from "@src/components/Charts/ChartMonthly";
@@ -7,7 +6,7 @@ import Forms from "@src/components/Forms";
 import TableWithIcon from "@src/components/Tables/TableWithIcon";
 import { useState } from "react";
 
-export default function expense() {
+export default function Expense() {
     const header = [
         'Date', 'Price', 'Details', 'Category', 'Status', 'Action'
     ]

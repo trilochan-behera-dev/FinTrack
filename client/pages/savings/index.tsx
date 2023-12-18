@@ -5,7 +5,7 @@ import Forms from "@src/components/Forms";
 import TableWithIcon from "@src/components/Tables/TableWithIcon";
 import { useState } from "react";
 
-export default function savings() {
+export default function Savings() {
     const header = [
         'Date', 'Price', 'Details', 'Category', 'Status', 'Action'
     ]
