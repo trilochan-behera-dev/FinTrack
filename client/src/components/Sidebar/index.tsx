@@ -136,6 +136,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                           sidebarExpanded
                             ? handleClick()
                             : setSidebarExpanded(true);
+                            setSidebarOpen(false)
                         }}
                       >
                         <svg

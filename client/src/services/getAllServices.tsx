@@ -1,5 +1,6 @@
 import axios from "axios";
 import moment from "moment";
+import { useEffect, useState } from "react";
 
 export const getMonth = () => {
     return [
@@ -90,4 +91,31 @@ export const getDataFromAPI = async (request: string, endPoint: string, data: an
         }
     }
 
+}
+
+export const getDeviceType = () => {
+    const [DeviceType, setDeviceType] = useState(window?.innerWidth < 768 ? "Mobile" : window?.innerWidth < 1280 ? "Tablet" : "Desktop")
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (window?.innerWidth < 768) {
+                setDeviceType("Mobile");
+            } else if (window?.innerWidth < 1280) {
+                setDeviceType("Tablet");
+            } else {
+                setDeviceType("Desktop");
+            }
+        };
+    
+        // Initial call to set the device type based on the initial window size
+        handleResize();
+    
+        window.addEventListener('resize', handleResize);
+    
+        // Cleanup the event listener on component unmount
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+    return DeviceType
 }

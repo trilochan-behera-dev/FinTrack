@@ -112,7 +112,7 @@ export default function Forms({ type, setIsApiCall }: any) {
                                 </g>
                             </svg>
                         </span>
-                        <select className={`relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input`} onChange={(e) => setDetails({ ...details, category: e?.target?.value })}>
+                        <select className={`relative w-full appearance-none rounded border border-stroke bg-transparent py-3 px-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input`} onChange={(e) => setDetails({ ...details, category: e?.target?.value })}>
                             <option>Select Category</option>
                             {category?.map((cat: any, i:any) => (
                                 <option value={cat?.categoryName} selected={cat.categoryName === details?.category} key={i}>{cat?.categoryName}</option>

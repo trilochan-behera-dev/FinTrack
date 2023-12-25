@@ -133,7 +133,7 @@ const ChartDaily: React.FC<ChartDailyStatsProps> = ({
         </div>
         <div className="flex gap-2">
           <div className="text-sm font-semibold text-black dark:text-white">
-            <select className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary cursor-pointer" onChange={(e) => setSelectData({ year: selectData?.year, month: Number(e?.target?.value) })}>
+            <select className="relative w-full appearance-none rounded border border-stroke bg-transparent px-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary cursor-pointer" onChange={(e) => setSelectData({ year: selectData?.year, month: Number(e?.target?.value) })}>
               {
                 monthList.map((mth) => (
                   <option value={mth?.id} selected={moment().month() + 1 === mth?.id} key={mth?.id}>{mth?.name}</option>
@@ -142,7 +142,7 @@ const ChartDaily: React.FC<ChartDailyStatsProps> = ({
             </select>
           </div>
           <div className="text-sm font-semibold text-black dark:text-white">
-            <select className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary cursor-pointer" onChange={(e) => setSelectData({ year: Number(e?.target?.value), month: selectData?.month })}>
+            <select className="relative w-full appearance-none rounded border border-stroke bg-transparent px-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary cursor-pointer" onChange={(e) => setSelectData({ year: Number(e?.target?.value), month: selectData?.month })}>
               {
                 yearList.map((yr) => (
                   <option value={yr} selected={moment().year() === yr} key={yr}>{yr}</option>

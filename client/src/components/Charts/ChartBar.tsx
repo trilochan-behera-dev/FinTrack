@@ -3,7 +3,7 @@ import { ApexOptions } from "apexcharts";
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import moment from "moment";
-import { getDataFromAPI, getSampleArray, getYear } from "@src/services/getAllServices";
+import { getDataFromAPI, getDeviceType, getSampleArray, getYear } from "@src/services/getAllServices";
 import Dropdown from "../SVG/Dropdown";
 const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
 
@@ -23,7 +23,9 @@ const ChartBar: React.FC<ChartBarStatsProps> = ({
   barColor
 }) => {
   const yearList = getYear();
+  const deviceType = getDeviceType();
   const [year, setYear] = useState(moment().year());
+  const [response, setResponse] = useState() as any
   const [barState, setBarState] = useState<ChartBarState>({
     series: [],
   });
@@ -72,7 +74,7 @@ const ChartBar: React.FC<ChartBarStatsProps> = ({
     },
 
     xaxis: {
-      categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+      categories: deviceType != "Mobile" ? ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"] : ["Dec"],
     },
     legend: {
       position: "top",
@@ -89,29 +91,55 @@ const ChartBar: React.FC<ChartBarStatsProps> = ({
       opacity: 1,
     },
   };
+  const setValue = (data: any) => {
+    if (data) {
+      const dynamicData = JSON.parse(JSON.stringify(data))
 
-  const fetchDatas = async () => {
-    try {
-      const response = await getDataFromAPI("get", `api/chart?type=all&year=${year}`);
       const dataArray = [
-        { name: "Income", data: getSampleArray(12) },
-        { name: "Expense", data: getSampleArray(12) },
-        { name: "Savings", data: getSampleArray(12) },
+        { name: "Income", data: getSampleArray(deviceType != "Mobile" ? 12 : 1) },
+        { name: "Expense", data: getSampleArray(deviceType != "Mobile" ? 12 : 1) },
+        { name: "Savings", data: getSampleArray(deviceType != "Mobile" ? 12 : 1) },
       ];
 
       const propertyMap = {
         income: 0, expense: 1, savings: 2
       } as any;
 
-      response.data?.forEach((res: any) => {
-        Object.keys(propertyMap).forEach((property) => {
-          if (property in res.data && res.data[property]) {
-            const dataIndex = propertyMap[property];
-            dataArray[dataIndex].data[res.month - 1] = res.data[property];
+      // console.log('deviceType: ', deviceType);
+
+      if (deviceType != "Mobile") {
+        dynamicData?.forEach((res: any) => {
+          Object.keys(propertyMap).forEach((property) => {
+            if (property in res.data && res.data[property]) {
+              const dataIndex = propertyMap[property];
+              dataArray[dataIndex].data[res.month - 1] = res.data[property];
+            }
+          });
+        });
+      } else {
+        console.log("hii")
+        dynamicData?.forEach((res: any) => {
+          console.log(res, "hii")
+          if (res.month === moment().month() + 1) {
+            Object.keys(propertyMap).forEach((prop) => {
+              const dataIndex = propertyMap[prop];
+              console.log('res.month: ', res.month, prop, res.data[prop], dataIndex);
+              dataArray[dataIndex].data = [res.data[prop]]
+            })
           }
         });
-      });
+      }
+
+
       setBarState({ series: dataArray })
+    }
+  }
+
+  const fetchDatas = async () => {
+    try {
+      const response = await getDataFromAPI("get", `api/chart?type=all&year=${year}`);
+      setValue(response?.data);
+      setResponse(response?.data)
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -121,6 +149,10 @@ const ChartBar: React.FC<ChartBarStatsProps> = ({
     fetchDatas();
   }, [year])
 
+  useEffect(() => {
+    setValue(response)
+  }, [deviceType])
+  
 
 
   return (
@@ -134,7 +166,7 @@ const ChartBar: React.FC<ChartBarStatsProps> = ({
         <div>
           <div className="flex items-center px-3 cursor-pointer">
             <select
-              className="relative z-20 inline-flex appearance-none cursor-pointer bg-transparent py-1 px-2 text-sm font-medium outline-none"
+              className="relative inline-flex appearance-none cursor-pointer bg-transparent py-1 px-2 text-sm font-medium outline-none"
               onChange={(e) => setYear(Number(e?.target?.value))}
             >
               {
@@ -143,7 +175,7 @@ const ChartBar: React.FC<ChartBarStatsProps> = ({
                 ))
               }
             </select>
-            <Dropdown/>
+            <Dropdown />
           </div>
         </div>
       </div>

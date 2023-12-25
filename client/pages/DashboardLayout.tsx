@@ -65,9 +65,9 @@ export default function DashboardLayout({
                         }
                     });
                 })
-                setData((prev: any) => {
-                    return { ...prev, balance: (prev?.income - prev.savings) - prev.expense };
-                });
+                // setData((prev: any) => {
+                //     return { ...prev, balance: (prev?.income - prev.savings) - prev.expense };
+                // });
             } else {
                 setData({
                     income: 0,

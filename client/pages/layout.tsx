@@ -11,7 +11,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         setTimeout(() => setLoading(false), 1500);
     }, []);
     return (
-        <div className="dark:bg-boxdark-2 dark:text-bodydark">
+        <div className="dark:bg-boxdark-2 dark:text-bodydark z-999999">
             {loading ? (
                 <Loader />
             ) : (

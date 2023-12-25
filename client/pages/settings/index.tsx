@@ -174,7 +174,7 @@ export default function Settings() {
                                         <div className="relative z-20 bg-white dark:bg-form-input">
 
                                             <select
-                                                className="relative z-20 w-fit appearance-none rounded border border-stroke bg-transparent py-3 pl-4 pr-10 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input capitalize"
+                                                className="relative w-fit appearance-none rounded border border-stroke bg-transparent py-3 pl-4 pr-10 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input capitalize"
                                                 onChange={(e) => {
                                                     const data = {
                                                         index: index,
@@ -250,7 +250,7 @@ export default function Settings() {
                                                                         updatecatData?._id && packageItem?._id === updatecatData?._id ?
                                                                             <>
                                                                                 <select
-                                                                                    className="z-20 w-[155px] appearance-none rounded border border-stroke bg-transparent py-1 pl-4 pr-10 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input capitalize"
+                                                                                    className=" w-[155px] appearance-none rounded border border-stroke bg-transparent py-1 pl-4 pr-10 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input capitalize"
                                                                                     onChange={(e) => setUpdatecatData({ ...updatecatData, categoryType: e?.target?.value })}
                                                                                 >
                                                                                     {['expense', 'savings', 'income'].map((op: any, i:any) => (

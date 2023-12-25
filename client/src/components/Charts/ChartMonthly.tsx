@@ -145,7 +145,7 @@ const ChartMonthly: React.FC<ChartMonthlyStatsProps> = ({
           {title}
         </div>
         <div className="text-sm font-semibold text-black dark:text-white">
-          <select className="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary cursor-pointer" onChange={(e) => setSelectYear(Number(e?.target?.value))}>
+          <select className="relative w-full appearance-none rounded border border-stroke bg-transparent px-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary cursor-pointer" onChange={(e) => setSelectYear(Number(e?.target?.value))}>
             {
               yearList.map((yr) => (
                 <option value={yr} selected={moment().year() === yr} key={yr}>{yr}</option>

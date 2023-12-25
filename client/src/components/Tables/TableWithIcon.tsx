@@ -7,12 +7,13 @@ import { getDataFromAPI } from "@src/services/getAllServices";
 import { UserContext } from "@pages/_app";
 import Warnings from "../Alert/Warning";
 
-const TableWithIcon = ({ header, type, IsApiCall, setIsApiCall=()=>{} }: any) => {
+const TableWithIcon = ({ header, type, IsApiCall, setIsApiCall = () => { } }: any) => {
   const [viewPopup, setViewPopup] = useState(false);
   const { setShowAlert } = useContext(UserContext) as any;
   const [clickItem, setClickItem] = useState();
+  const [allData, setAllData] = useState([]) as any;
   const [tableData, setTableData] = useState([]) as any;
-  const numberOfPages = 10;
+  const [numberOfPages, setNumberOfPages] = useState(window?.innerWidth < 768 ? 6 : window?.innerWidth < 1280 ? 9 : 10)
   const [selectData, setSelectData] = useState({
     "type": type === "all" ? "" : type,
     "status": "",
@@ -37,10 +38,23 @@ const TableWithIcon = ({ header, type, IsApiCall, setIsApiCall=()=>{} }: any) =>
     if (response.status) {
       const updateDetails = tableData.filter((data: any) => data._id != isWarnings?.id)
       setTableData(updateDetails);
+      setAllData(updateDetails);
       setIsApiCall(true);
       setIsWarnings({ ...isWarnings, status: false });
     }
     setShowAlert({ title: response.message, status: response.status, isOpen: true });
+  }
+
+  const handleStatus = (e) => {
+    console.log(allData);
+    if (!e?.target?.value) {
+      console.log(tableData, e?.target?.value)
+      setTableData(allData)
+    } else {
+      const newdata = allData.filter((data) => +e?.target?.value ? data.paymentStatus : !data.paymentStatus)
+      setTableData(newdata);
+    }
+    setPagination({ start: 0, end: numberOfPages })
   }
 
   // Define an asynchronous function
@@ -49,7 +63,10 @@ const TableWithIcon = ({ header, type, IsApiCall, setIsApiCall=()=>{} }: any) =>
       const response = await getDataFromAPI('get', 'api/details', selectData);
       if (response.status) {
         setTableData(response.data);
+        setAllData(response.data);
         setIsApiCall(false);
+        setNumberOfPages(window?.innerWidth < 768 ? 6 : window?.innerWidth < 1280 ? 9 : 10)
+        setPagination({ start: 0, end: numberOfPages })
       }
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -58,11 +75,11 @@ const TableWithIcon = ({ header, type, IsApiCall, setIsApiCall=()=>{} }: any) =>
 
   useEffect(() => {
     fetchDatas();
-  }, [selectData, IsApiCall]);
+  }, [IsApiCall]);
 
 
   return (
-    <div className={`rounded-sm border border-stroke bg-white ${!isWarnings?.status ? "pt-4":"h-[600px] flex justify-center items-center"} shadow-default dark:border-strokedark dark:bg-boxdark`}>
+    <div className={`rounded-sm border border-stroke bg-white ${!isWarnings?.status ? "pt-4" : "h-[600px] flex justify-center items-center"} shadow-default dark:border-strokedark dark:bg-boxdark`}>
       {
         isWarnings?.status ?
           <Warnings onCancel={() => setIsWarnings({ ...isWarnings, status: false })} onClick={handleDelete} />
@@ -81,7 +98,7 @@ const TableWithIcon = ({ header, type, IsApiCall, setIsApiCall=()=>{} }: any) =>
                 {
                   type === "all" &&
                   <div className="relative z-20 bg-white w-1/2 sm:w-full dark:bg-form-input">
-                    <select className={`relative z-20  w-full sm:w-fit appearance-none rounded border border-stroke bg-transparent py-2 pl-4 pr-10 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input`}
+                    <select className={`relative  w-full sm:w-fit appearance-none rounded border border-stroke bg-transparent py-2 pl-4 pr-10 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input`}
                       onChange={(e) => setSelectData({ ...selectData, type: e?.target?.value })}
                     >
                       <option value="">Select Type</option>
@@ -95,12 +112,12 @@ const TableWithIcon = ({ header, type, IsApiCall, setIsApiCall=()=>{} }: any) =>
                   </div>
                 }
                 <div className="relative z-20 bg-white w-1/2 sm:w-full dark:bg-form-input">
-                  <select className={`relative z-20 w-full sm:w-fit appearance-none rounded border border-stroke bg-transparent py-2 pl-4 pr-10 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input`}
-                    onChange={(e) => setSelectData({ ...selectData, status: e?.target?.value })}
+                  <select className={`relative w-full sm:w-fit appearance-none rounded border border-stroke bg-transparent py-2 pl-4 pr-10 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input`}
+                    onChange={handleStatus}
                   >
                     <option value="">All</option>
-                    <option value="paid">Paid</option>
-                    <option value="unpaid">Unpaid</option>
+                    <option value="1">Paid</option>
+                    <option value="0">Unpaid</option>
                   </select>
                   <span className="absolute top-1/2 right-4 z-10 -translate-y-1/2">
                     <Dropdown />

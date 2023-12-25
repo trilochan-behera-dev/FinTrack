@@ -41,6 +41,9 @@ export default function App({ Component, pageProps }: AppProps) {
       router.push("/");
     }
   }, [router]);
+
+
+  
   return (
     <>
 

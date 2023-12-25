@@ -94,7 +94,7 @@ export default function DetailsPopup({ clickItem, setViewPopup, setIsApiCall }: 
                                         </g>
                                     </svg>
                                 </span>
-                                <select className={`relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input ${!isClick && "bg-form-strokedark bg-opacity-10"}`} disabled={!isClick} onChange={(e) => setUpdateData({ ...updateData, type: e?.target?.value })}>
+                                <select className={`relative w-full appearance-none rounded border border-stroke bg-transparent py-3 px-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input ${!isClick && "bg-form-strokedark bg-opacity-10"}`} disabled={!isClick} onChange={(e) => setUpdateData({ ...updateData, type: e?.target?.value })}>
                                     <option value="income" selected={updateData?.type === "income"}>Income</option>
                                     <option value="savings" selected={updateData?.type === "savings"}>Savings</option>
                                     <option value="expense" selected={updateData?.type === "expense"}>Expense</option>
@@ -154,7 +154,7 @@ export default function DetailsPopup({ clickItem, setViewPopup, setIsApiCall }: 
                                         </g>
                                     </svg>
                                 </span>
-                                <select className={`relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input ${!isClick && "bg-form-strokedark bg-opacity-10"}`} disabled={!isClick}
+                                <select className={`relative w-full appearance-none rounded border border-stroke bg-transparent py-3 px-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input ${!isClick && "bg-form-strokedark bg-opacity-10"}`} disabled={!isClick}
                                     onChange={(e) => setUpdateData({ ...updateData, category: e?.target?.value })}>
                                     {category.map((cat: any, i:any) => (
                                         <option value={cat?.categoryName?.toLowerCase()} selected={updateData?.category?.toLowerCase() === cat?.categoryName?.toLowerCase()} key={i}>{cat?.categoryName}</option>
@@ -214,7 +214,7 @@ export default function DetailsPopup({ clickItem, setViewPopup, setIsApiCall }: 
                                 <span className="absolute top-1/2 left-4 z-30 -translate-y-1/2">
                                     <Checkbox status={updateData?.paymentStatus} setStatus={(status: any) => setUpdateData({ ...updateData, paymentStatus: status })} />
                                 </span>
-                                <select className={`relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input ${!isClick && "bg-form-strokedark bg-opacity-10"}`} disabled={!isClick}
+                                <select className={`relative w-full appearance-none rounded border border-stroke bg-transparent py-3 px-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input ${!isClick && "bg-form-strokedark bg-opacity-10"}`} disabled={!isClick}
                                     onChange={(e) => setUpdateData({ ...updateData, modeOfPayment: e?.target?.value })}>
                                     <option value="cash" selected={updateData?.modeOfPayment === "cash"}>Cash</option>
                                     <option value="upi" selected={updateData?.modeOfPayment === "upi"}>UPI</option>
