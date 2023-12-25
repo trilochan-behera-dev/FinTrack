@@ -149,7 +149,7 @@ export default function Settings() {
                                             onChange={(e) => {
                                                 const data = {
                                                     index: index,
-                                                    categoryName: e?.target?.value,
+                                                    categoryName: e?.target?.value.toLowerCase(),
                                                     colorCode: category?.colorCode,
                                                     categoryType: category?.categoryType
                                                 }
@@ -236,7 +236,7 @@ export default function Settings() {
                                                                                     placeholder="New Category name"
                                                                                     value={updatecatData?.categoryName}
                                                                                     className="w-[155px] rounded border-[1.5px] border-stroke bg-transparent py-1 px-2 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                                                                                    onChange={(e) => setUpdatecatData({ ...updatecatData, categoryName: e?.target?.value })}
+                                                                                    onChange={(e) => setUpdatecatData({ ...updatecatData, categoryName: e?.target?.value.toLowerCase() })}
                                                                                 />
                                                                             </>
                                                                             :

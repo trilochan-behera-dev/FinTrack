@@ -152,7 +152,7 @@ const TableWithIcon = ({ header, type, IsApiCall, setIsApiCall=()=>{} }: any) =>
                                 </td>
                             }
                             <td className="border-b w-[160px] border-[#eee] h-8 py-[11px] dark:border-strokedark">
-                              <p className="text-black w-[160px] dark:text-white capitalize">
+                              <p className="text-black w-[160px] dark:text-white">
                                 {packageItem.category}
                               </p>
                             </td>

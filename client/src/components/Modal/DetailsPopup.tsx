@@ -157,7 +157,7 @@ export default function DetailsPopup({ clickItem, setViewPopup, setIsApiCall }: 
                                 <select className={`relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input ${!isClick && "bg-form-strokedark bg-opacity-10"}`} disabled={!isClick}
                                     onChange={(e) => setUpdateData({ ...updateData, category: e?.target?.value })}>
                                     {category.map((cat: any, i:any) => (
-                                        <option value={cat?.categoryName} selected={updateData?.category?.toLowerCase() === cat?.categoryName?.toLowerCase()} key={i}>{cat?.categoryName}</option>
+                                        <option value={cat?.categoryName?.toLowerCase()} selected={updateData?.category?.toLowerCase() === cat?.categoryName?.toLowerCase()} key={i}>{cat?.categoryName}</option>
                                     ))}
                                 </select>
                                 <span className="absolute top-1/2 right-4 z-10 -translate-y-1/2">
