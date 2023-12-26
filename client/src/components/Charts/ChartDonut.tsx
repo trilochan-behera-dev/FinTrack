@@ -136,7 +136,7 @@ const ChartDonut: React.FC<ChartDonutStatsProps> = ({
       </div>
 
       <div className="mb-2">
-        <div id="ChartDonut" className="sm:mx-auto sm:flex sm:justify-center">
+        <div id="ChartDonut">
           <ReactApexChart
             options={options}
             series={state.series.find((ser) => ser > 0) ? state.series : [100]}

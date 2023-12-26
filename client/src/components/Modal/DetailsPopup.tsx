@@ -38,8 +38,8 @@ export default function DetailsPopup({ clickItem, setViewPopup, setIsApiCall }: 
     }, [updateData?.type]); // Empty dependency array means this effect runs once after the initial render
 
     return (
-        <div className="grid gap-8 min-h-[58vh] h-[59.5vh]">
-            <div className="rounded-sm border py-6 xl:py-0 border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+        <div className="grid gap-8 min-h-[600px]">
+            <div className="rounded-sm border-t py-6 xl:py-0 border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
                 <div className="border-b border-stroke p-4 dark:border-strokedark">
                     <div className="font-medium text-black dark:text-white capitalize">
                         {updateData?.type} Information ( {updateData?.date.toString().length === 1 ? `0${updateData?.date}` : updateData?.date}/{updateData?.month}/{updateData?.year} )

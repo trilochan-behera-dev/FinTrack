@@ -74,7 +74,7 @@ const ChartBar: React.FC<ChartBarStatsProps> = ({
     },
 
     xaxis: {
-      categories: deviceType != "Mobile" ? ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"] : ["Dec"],
+      categories: deviceType != "Mobile" ? ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"] : [moment().format('MMMM')],
     },
     legend: {
       position: "top",
@@ -105,8 +105,6 @@ const ChartBar: React.FC<ChartBarStatsProps> = ({
         income: 0, expense: 1, savings: 2
       } as any;
 
-      // console.log('deviceType: ', deviceType);
-
       if (deviceType != "Mobile") {
         dynamicData?.forEach((res: any) => {
           Object.keys(propertyMap).forEach((property) => {
@@ -117,13 +115,10 @@ const ChartBar: React.FC<ChartBarStatsProps> = ({
           });
         });
       } else {
-        console.log("hii")
         dynamicData?.forEach((res: any) => {
-          console.log(res, "hii")
           if (res.month === moment().month() + 1) {
             Object.keys(propertyMap).forEach((prop) => {
               const dataIndex = propertyMap[prop];
-              console.log('res.month: ', res.month, prop, res.data[prop], dataIndex);
               dataArray[dataIndex].data = [res.data[prop]]
             })
           }
@@ -157,7 +152,7 @@ const ChartBar: React.FC<ChartBarStatsProps> = ({
 
   return (
     <div className="col-span-12 rounded-sm border border-stroke bg-white p-8 h-full shadow-default dark:border-strokedark dark:bg-boxdark">
-      <div className="mb-4 justify-between gap-4 sm:flex">
+      <div className="mb-4 justify-between gap-4 flex">
         <div>
           <h4 className="text-xl font-semibold text-black dark:text-white">
             {title}

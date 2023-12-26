@@ -106,16 +106,25 @@ export const GetDeviceType = () => {
                 setDeviceType("Desktop");
             }
         };
-    
+
         // Initial call to set the device type based on the initial window size
         handleResize();
-    
+
         window.addEventListener('resize', handleResize);
-    
+
         // Cleanup the event listener on component unmount
         return () => {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
     return DeviceType
+}
+
+export const getRandomColor = () => {
+    var letters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
 }

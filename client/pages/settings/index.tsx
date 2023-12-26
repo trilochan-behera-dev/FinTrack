@@ -5,7 +5,7 @@ import Dropdown from "@src/components/SVG/Dropdown";
 import Pagination from "@src/components/Pagination";
 import Breadcrumb from "@src/components/Breadcrumbs/Breadcrumb";
 import { useContext, useEffect, useState } from "react";
-import { getDataFromAPI } from "@src/services/getAllServices";
+import { getDataFromAPI, getRandomColor } from "@src/services/getAllServices";
 import { UserContext } from "@pages/_app";
 import Warnings from "@src/components/Alert/Warning";
 
@@ -15,36 +15,35 @@ export default function Settings() {
         'Category Name', 'Type', 'Color code', 'Action'
     ]
     const [fetchData, setFetchData] = useState(true);
-    const numberOfPages = 10;
+    const numberOfPages = 8;
     const [pagination, setPagination] = useState({
         start: 0,
         end: numberOfPages
     })
     const [tableData, setTableData] = useState([]) as any;
-    const [newCategory, setnewCategory] = useState([]) as any;
+    
+    const catData = {
+        categoryName: "",
+        colorCode: getRandomColor(),
+        categoryType: "expense"
+    };
+    const [newCategory, setnewCategory] = useState([catData]) as any;
     const [updatecatData, setUpdatecatData] = useState({}) as any;
     const [isWarnings, setIsWarnings] = useState({
         status: false,
         id: "",
     })
-    const [category, setCategory] = useState({
-        categoryName: "",
-        colorCode: "#000",
-        categoryType: "expense"
-    });
+    const [category, setCategory] = useState(catData);
     const addNewCategory = () => {
         if (!newCategory?.length) {
             setnewCategory([category]);
+        } else if (newCategory?.length > 5) {
+            setShowAlert({ title: "You can't add more than 6 values at a time ", status: false, isOpen: true })
         } else if (newCategory[newCategory?.length - 1]['categoryName'] === "") {
             setShowAlert({ title: "Please enter value before adding new", status: false, isOpen: true })
         } else {
-            const data = {
-                categoryName: "",
-                colorCode: "#000",
-                categoryType: "expense"
-            }
-            setnewCategory([...newCategory, data]);
-            setCategory(data);
+            setnewCategory([...newCategory, catData]);
+            setCategory(catData);
         }
     }
 
@@ -129,7 +128,7 @@ export default function Settings() {
         <>
             <Breadcrumb pageName="Settings" />
             <div className="grid grid-cols-1 xl:grid-cols-3 gap-4 pb-2">
-                <div className="flex flex-col justify-between rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark max-h-[90%]">
+                <div className="flex flex-col justify-between rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
                     <div className="flex flex-col h-[calc(100%-46px)]">
                         <div className="h-16 border-b border-stroke dark:border-strokedark flex justify-between items-center px-8 font-medium text-black dark:text-white">
                             <p>Add Categories</p>
@@ -137,10 +136,10 @@ export default function Settings() {
                                 <Plus height={25} weight={25} />
                             </p>
                         </div>
-                        <div className="h-[61vh] p-8 overflow-auto">
+                        <div className="h-[370px] sm:h-[435px] p-3 sm:p-8 overflow-auto">
                             <div className="flex flex-col gap-2 overflow-auto">
                                 {newCategory.map((newCat: any, index: number) => (
-                                    <div className="flex gap-2"  key={index}>
+                                    <div className="flex gap-2" key={index}>
                                         <input
                                             type="text"
                                             placeholder="New Category name"
@@ -185,7 +184,7 @@ export default function Settings() {
                                                     addCategory(data)
                                                 }}
                                             >
-                                                {['expense', 'savings', 'income'].map((op: any, index:any) => (
+                                                {['expense', 'savings', 'income'].map((op: any, index: any) => (
                                                     <option value={op} selected={newCat?.categoryType === op} className="capitalize" key={index} >{op}</option>
                                                 ))}
                                             </select>
@@ -202,7 +201,7 @@ export default function Settings() {
                         Save
                     </div>
                 </div>
-                <div className={`xl:col-span-2 flex flex-col justify-between rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark max-h-[90%] ${isWarnings?.status && "h-[600px] md:h-[700px] flex justify-center items-center"}`}>
+                <div className={`xl:col-span-2 flex flex-col justify-between rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark min-h-[435px] ${isWarnings?.status && "min-h-[435px] flex justify-center items-center"}`}>
                     {
                         isWarnings?.status ?
                             <Warnings onCancel={() => setIsWarnings({ ...isWarnings, status: false })} onClick={handleDelete} /> :
@@ -213,7 +212,7 @@ export default function Settings() {
                                     </div>
                                     {
                                         tableData?.length ?
-                                            <div className="h-[61vh] overflow-auto">
+                                            <div className="h-[435px] overflow-auto">
                                                 <table className="w-full py-4">
                                                     <thead>
                                                         <tr className="bg-primary bg-opacity-10 dark:bg-meta-4">
@@ -253,7 +252,7 @@ export default function Settings() {
                                                                                     className=" w-[155px] appearance-none rounded border border-stroke bg-transparent py-1 pl-4 pr-10 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input capitalize"
                                                                                     onChange={(e) => setUpdatecatData({ ...updatecatData, categoryType: e?.target?.value })}
                                                                                 >
-                                                                                    {['expense', 'savings', 'income'].map((op: any, i:any) => (
+                                                                                    {['expense', 'savings', 'income'].map((op: any, i: any) => (
                                                                                         <option value={op} selected={packageItem?.categoryType === op} className="capitalize" key={i}>{op}</option>
                                                                                     ))}
                                                                                 </select>

@@ -13,7 +13,7 @@ const TableWithIcon = ({ header, type, IsApiCall, setIsApiCall = () => { } }: an
   const [clickItem, setClickItem] = useState();
   const [allData, setAllData] = useState([]) as any;
   const [tableData, setTableData] = useState([]) as any;
-  const [numberOfPages, setNumberOfPages] = useState(window?.innerWidth < 768 ? 6 : window?.innerWidth < 1280 ? 9 : 10)
+  const numberOfPages = 10;
   const [selectData, setSelectData] = useState({
     "type": type === "all" ? "" : type,
     "status": "",
@@ -45,13 +45,11 @@ const TableWithIcon = ({ header, type, IsApiCall, setIsApiCall = () => { } }: an
     setShowAlert({ title: response.message, status: response.status, isOpen: true });
   }
 
-  const handleStatus = (e:any) => {
-    console.log(allData);
+  const handleStatus = (e: any) => {
     if (!e?.target?.value) {
-      console.log(tableData, e?.target?.value)
       setTableData(allData)
     } else {
-      const newdata = allData.filter((data:any) => +e?.target?.value ? data.paymentStatus : !data.paymentStatus)
+      const newdata = allData.filter((data: any) => +e?.target?.value ? data.paymentStatus : !data.paymentStatus)
       setTableData(newdata);
     }
     setPagination({ start: 0, end: numberOfPages })
@@ -65,7 +63,6 @@ const TableWithIcon = ({ header, type, IsApiCall, setIsApiCall = () => { } }: an
         setTableData(response.data);
         setAllData(response.data);
         setIsApiCall(false);
-        setNumberOfPages(window?.innerWidth < 768 ? 6 : window?.innerWidth < 1280 ? 9 : 10)
         setPagination({ start: 0, end: numberOfPages })
       }
     } catch (error) {
@@ -85,48 +82,53 @@ const TableWithIcon = ({ header, type, IsApiCall, setIsApiCall = () => { } }: an
           <Warnings onCancel={() => setIsWarnings({ ...isWarnings, status: false })} onClick={handleDelete} />
           :
           <>
-            <div className="sm:flex justify-between items-center px-8">
-              <div className="relative">
-                <input
-                  type="month"
-                  value={selectData?.date}
-                  onChange={(e) => setSelectData({ ...selectData, date: e?.target?.value })}
-                  className={`custom-input-date custom-input-date-1 w-full rounded border-[1.5px] border-stroke bg-transparent py-2 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary`}
-                />
-              </div>
-              <div className="flex gap-2 pt-2 sm:pt-0 justify-end">
-                {
-                  type === "all" &&
-                  <div className="relative z-20 bg-white w-1/2 sm:w-full dark:bg-form-input">
-                    <select className={`relative  w-full sm:w-fit appearance-none rounded border border-stroke bg-transparent py-2 pl-4 pr-10 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input`}
-                      onChange={(e) => setSelectData({ ...selectData, type: e?.target?.value })}
-                    >
-                      <option value="">Select Type</option>
-                      <option value="income">Income</option>
-                      <option value="savings">Savings</option>
-                      <option value="expense">Expense</option>
-                    </select>
-                    <span className="absolute top-1/2 right-4 z-10 -translate-y-1/2">
-                      <Dropdown />
-                    </span>
+            {
+              viewPopup ?
+                <p className="text-xl font-medium px-4">Edit Details</p>
+                :
+                <div className={`sm:flex justify-between items-center px-8`}>
+                  <div className="relative">
+                    <input
+                      type="month"
+                      value={selectData?.date}
+                      onChange={(e) => setSelectData({ ...selectData, date: e?.target?.value })}
+                      className={`custom-input-date custom-input-date-1 w-full rounded border-[1.5px] border-stroke bg-transparent py-2 px-5 font-medium outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary`}
+                    />
                   </div>
-                }
-                <div className="relative z-20 bg-white w-1/2 sm:w-full dark:bg-form-input">
-                  <select className={`relative w-full sm:w-fit appearance-none rounded border border-stroke bg-transparent py-2 pl-4 pr-10 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input`}
-                    onChange={handleStatus}
-                  >
-                    <option value="">All</option>
-                    <option value="1">Paid</option>
-                    <option value="0">Unpaid</option>
-                  </select>
-                  <span className="absolute top-1/2 right-4 z-10 -translate-y-1/2">
-                    <Dropdown />
-                  </span>
-                </div>
+                  <div className="flex gap-2 pt-2 sm:pt-0 justify-end">
+                    {
+                      type === "all" &&
+                      <div className="relative z-20 bg-white w-1/2 sm:w-full dark:bg-form-input">
+                        <select className={`relative  w-full sm:w-fit appearance-none rounded border border-stroke bg-transparent py-2 pl-4 pr-10 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input`}
+                          onChange={(e) => setSelectData({ ...selectData, type: e?.target?.value })}
+                        >
+                          <option value="">Select Type</option>
+                          <option value="income">Income</option>
+                          <option value="savings">Savings</option>
+                          <option value="expense">Expense</option>
+                        </select>
+                        <span className="absolute top-1/2 right-4 z-10 -translate-y-1/2">
+                          <Dropdown />
+                        </span>
+                      </div>
+                    }
+                    <div className="relative z-20 bg-white w-1/2 sm:w-full dark:bg-form-input">
+                      <select className={`relative w-full sm:w-fit appearance-none rounded border border-stroke bg-transparent py-2 pl-4 pr-10 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input`}
+                        onChange={handleStatus}
+                      >
+                        <option value="">All</option>
+                        <option value="1">Paid</option>
+                        <option value="0">Unpaid</option>
+                      </select>
+                      <span className="absolute top-1/2 right-4 z-10 -translate-y-1/2">
+                        <Dropdown />
+                      </span>
+                    </div>
 
-              </div>
-            </div>
-            <div className={`max-w-full overflow-x-auto ${!viewPopup && "min-h-[58vh]"} h-[63vh] pt-4 overflow-auto`}>
+                  </div>
+                </div>
+            }
+            <div className={`max-w-full overflow-x-auto ${!viewPopup && "min-h-[600px]"} pt-4 overflow-auto`}>
               {
                 viewPopup ?
                   <DetailsPopup clickItem={clickItem} setViewPopup={setViewPopup} setIsApiCall={setIsApiCall} /> :
@@ -240,7 +242,7 @@ const TableWithIcon = ({ header, type, IsApiCall, setIsApiCall = () => { } }: an
                     <div className="flex justify-center items-center h-[58vh]">No Data Present</div>
               }
             </div>
-            <div className="flex w-full gap-2 justify-end px-8 items-center  bg-success font-medium text-bodydark1 h-12 dark:text-white">
+            <div className={`flex w-full gap-2 justify-end px-8 items-center  bg-success font-medium text-bodydark1 h-12 dark:text-white ${viewPopup && "invisible"}`}>
               <Pagination pagination={pagination} setPagination={setPagination} tableData={tableData} numberOfPages={numberOfPages} />
             </div>
           </>

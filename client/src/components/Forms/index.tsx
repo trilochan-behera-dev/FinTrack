@@ -122,7 +122,7 @@ export default function Forms({ type, setIsApiCall }: any) {
                             <Dropdown />
                         </span>
                     </div>
-                    <div className="relative py-2 md:py-0 bg-white dark:bg-form-input">
+                    <div className="relative py-2 md:py-0 ">
                         <span className="absolute top-1/2 left-1 -translate-y-1/2">
                             <Checkbox status={details?.paymentStatus} setStatus={handleStatus} />
                         </span>

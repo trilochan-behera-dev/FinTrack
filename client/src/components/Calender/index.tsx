@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import moment from "moment";
 
 const Calendar = () => {
-
   const [dateArray, setDateArray] = useState([]) as any;
+  const [selectDate, setSelectDate] = useState(0)
   const [data, setData] = useState([]) as any;
   const week = [
     {
@@ -98,12 +98,12 @@ const Calendar = () => {
           <tbody>
             < tr className="grid grid-cols-7" >
               {
-                dateArray.map((date: any, i:any) => (
-                  <td className={`ease relative h-20 cursor-pointer border border-stroke p-2 transition duration-500 hover:bg-gray dark:border-strokedark dark:hover:bg-meta-4 md:h-25 md:p-4 xl:h-28 ${date > 0 && date <= data.length && 'bg-primary bg-opacity-10'}`} key={i}>
-                    {date > 0 && date <= data.length ?
+                dateArray.map((date: any, i: any) => (
+                  <td className={`ease relative h-20 cursor-pointer border border-stroke p-2 transition duration-500 hover:bg-gray dark:border-strokedark dark:hover:bg-meta-4 md:h-25 md:p-4 xl:h-28 ${date > 0 && 'bg-primarydark bg-opacity-20'}`} key={i} onClick={() => setSelectDate(date)}>
+                    {date > 0 ?
                       <span className="font-medium text-black dark:text-white flex gap-4">
-                        <p className="bg-[#8e8e8e] h-8 w-8 rounded-full flex items-center justify-center text-white text-xs">{date}</p>
-                        <div className="text-sm">
+                        <p className="bg-primarydark h-8 w-8 rounded-full flex items-center justify-center text-white text-xs">{date}</p>
+                        <div className="text-sm hidden xl:block">
                           {data.map((d: any, i: any) => d?.date === date && (
                             <div key={i}>
                               {d.data?.income && <p> {d.data?.income} (Income) </p>}
@@ -114,7 +114,7 @@ const Calendar = () => {
                         </div>
                       </span> :
                       <span className="font-medium text-black dark:text-white">
-                        <p className={`${date && 'bg-[#8e8e8e] h-8 w-8 rounded-full flex items-center justify-center text-white text-xs'}`}>{date || ""}</p>
+                        <p className={`${date && 'bg-secondary h-8 w-8 rounded-full flex items-center justify-center text-white text-xs'}`} ></p>
                       </span>
                     }
                   </td>
@@ -124,6 +124,17 @@ const Calendar = () => {
             {/* <!-- Line 5 --> */}
           </tbody>
         </table>
+
+        {
+          data?.map((d: any, i: any) => d.date === selectDate && (
+            <div key={i} className="bg-primarydark  w-full p-4 h-32 mt-4 text-white xl:hidden">
+              <p>Date: {d.date}/{moment().month() + 1}/{moment().year()}</p>
+              {d.data?.income && <p> {d.data?.income} (Income) </p>}
+              {d.data?.savings && <p> {d.data?.savings} (Savings) </p>}
+              {d.data?.expense && <p> {d.data?.expense} (Expense) </p>}
+            </div>
+          ))
+        }
       </div >
       {/* <!-- ====== Calendar Section End ====== --> */}
     </>

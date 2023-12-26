@@ -16,7 +16,6 @@ const Login = () => {
     const handleLogin = async () => {
         setIsLoading(true);
         const response = await getDataFromAPI("post", `api/login`, formData);
-        console.log('response: ', response);
         setIsLoading(false);
         setShowAlert({ title: response.message, status: response.status, isOpen: true })
         if (response?.status) {

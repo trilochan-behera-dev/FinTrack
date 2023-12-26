@@ -20,7 +20,7 @@ const Breadcrumb = ({ pageName }: BreadcrumbProps) => {
               Dashboard /
             </Link>
           </li>
-          <li className="font-medium text-primary capitalize"> {page ? `${page}` : 'Overview'}</li>
+          <li className="font-medium text-primary dark:text-primarydark capitalize"> {page ? `${page}` : 'Overview'}</li>
         </ol>
       </nav>
     </div>

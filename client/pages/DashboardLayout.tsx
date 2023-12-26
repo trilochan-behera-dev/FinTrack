@@ -52,7 +52,6 @@ export default function DashboardLayout({
     const fetchDatas = async () => {
         try {
             const response = await getDataFromAPI("get", `api/chart-overview?year=${year}`);
-            console.log('response: ', response);
             if (response?.data?.length) {
                 response?.data.map((res: any, i: any) => {
                     setData((prevData: any) => {
@@ -65,9 +64,6 @@ export default function DashboardLayout({
                         }
                     });
                 })
-                // setData((prev: any) => {
-                //     return { ...prev, balance: (prev?.income - prev.savings) - prev.expense };
-                // });
             } else {
                 setData({
                     income: 0,

@@ -187,10 +187,8 @@ span.flatpickr-weekday,
 }
 
 
-@media only screen and (max-width: 600px) {
-  .apexcharts-legend {
-    display: none !important;
-  }
+.apexcharts-legend {
+  display: none !important;
 }
 
 .scrollbar::-webkit-scrollbar {
