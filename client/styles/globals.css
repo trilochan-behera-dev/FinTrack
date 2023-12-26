@@ -192,3 +192,7 @@ span.flatpickr-weekday,
     display: none !important;
   }
 }
+
+.scrollbar::-webkit-scrollbar {
+  @apply bg-primary border-primary w-[5px];
+}
