@@ -136,7 +136,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                           sidebarExpanded
                             ? handleClick()
                             : setSidebarExpanded(true);
-                            setSidebarOpen(false)
+                          setSidebarOpen(false)
                         }}
                       >
                         <svg
@@ -195,6 +195,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                                   href={sidebar?.link}
                                   className={`group relative flex items-center gap-2.5 rounded-md px-4  text-bodydark2 duration-300 ease-in-out hover:text-white ${pathname === sidebar?.link ? "text-white font-bold " : "font-medium"
                                     } `}
+                                  onClick={() => setSidebarOpen(false)}
                                 >
                                   {sidebar?.name}
                                 </Link>
@@ -213,6 +214,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   href="/profile"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-primarydark dark:hover:bg-meta-4 ${pathname.includes("profile") && "bg-primarydark dark:bg-meta-4"
                     }`}
+                  onClick={() => setSidebarOpen(false)}
                 >
                   <svg
                     className="fill-current"
@@ -243,6 +245,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-primarydark dark:hover:bg-meta-4 ${pathname.includes("calendar") &&
                     "bg-primarydark dark:bg-meta-4"
                     }`}
+                  onClick={() => setSidebarOpen(false)}
                 >
                   <svg
                     className="fill-current"
@@ -269,6 +272,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-primarydark dark:hover:bg-meta-4 ${pathname.includes("settings") &&
                     "bg-primarydark dark:bg-meta-4"
                     }`}
+                  onClick={() => setSidebarOpen(false)}
                 >
                   <svg
                     className="fill-current"
