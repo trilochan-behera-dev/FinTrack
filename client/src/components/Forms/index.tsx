@@ -81,8 +81,8 @@ export default function Forms({ type, setIsApiCall }: any) {
                             onChange={(e) => setDetails({ ...details, price: Number(e?.target?.value) })}
                         />
                     </div>
-                    <div className="relative z-20 bg-white dark:bg-form-input">
-                        <span className="absolute top-1/2 left-4 z-30 -translate-y-1/2">
+                    <div className="relative bg-white dark:bg-form-input">
+                        <span className="absolute top-1/2 left-4 -translate-y-1/2">
                             <svg
                                 width="20"
                                 height="20"
@@ -118,12 +118,12 @@ export default function Forms({ type, setIsApiCall }: any) {
                                 <option value={cat?.categoryName} selected={cat.categoryName === details?.category} key={i}>{cat?.categoryName}</option>
                             ))}
                         </select>
-                        <span className="absolute top-1/2 right-4 z-10 -translate-y-1/2">
+                        <span className="absolute top-1/2 right-4 -translate-y-1/2">
                             <Dropdown />
                         </span>
                     </div>
-                    <div className="relative z-20 py-2 md:py-0 bg-white dark:bg-form-input">
-                        <span className="absolute top-1/2 left-1 z-30 -translate-y-1/2">
+                    <div className="relative py-2 md:py-0 bg-white dark:bg-form-input">
+                        <span className="absolute top-1/2 left-1 -translate-y-1/2">
                             <Checkbox status={details?.paymentStatus} setStatus={handleStatus} />
                         </span>
                     </div>

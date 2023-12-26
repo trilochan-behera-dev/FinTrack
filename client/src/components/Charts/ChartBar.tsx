@@ -3,7 +3,7 @@ import { ApexOptions } from "apexcharts";
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import moment from "moment";
-import { getDataFromAPI, getDeviceType, getSampleArray, getYear } from "@src/services/getAllServices";
+import { getDataFromAPI, GetDeviceType, getSampleArray, getYear } from "@src/services/getAllServices";
 import Dropdown from "../SVG/Dropdown";
 const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
 
@@ -23,7 +23,7 @@ const ChartBar: React.FC<ChartBarStatsProps> = ({
   barColor
 }) => {
   const yearList = getYear();
-  const deviceType = getDeviceType();
+  const deviceType = GetDeviceType();
   const [year, setYear] = useState(moment().year());
   const [response, setResponse] = useState() as any
   const [barState, setBarState] = useState<ChartBarState>({
@@ -181,7 +181,7 @@ const ChartBar: React.FC<ChartBarStatsProps> = ({
       </div>
 
       <div>
-        <div id="ChartBar" className="-ml-5 -mb-9 min-w-[400px] overflow-auto">
+        <div id="ChartBar" className="-ml-5 -mb-9 overflow-hidden">
           <ApexCharts
             options={options}
             series={barState.series}

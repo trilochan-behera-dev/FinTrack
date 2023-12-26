@@ -20,12 +20,12 @@
     scrollbar-width: none; /* Firefox */
   }
 
-  .chat-height {
+  /* .chat-height {
     @apply h-[calc(100vh_-_8.125rem)] lg:h-[calc(100vh_-_5.625rem)];
   }
   .inbox-height {
     @apply h-[calc(100vh_-_8.125rem)] lg:h-[calc(100vh_-_5.625rem)];
-  }
+  } */
 }
 
 /* third-party libraries CSS */
@@ -112,9 +112,9 @@ span.flatpickr-weekday,
   @apply dark:!text-white;
 }
 
-.map-btn .jvm-zoom-btn {
+/* .map-btn .jvm-zoom-btn {
   @apply flex items-center justify-center w-7.5 h-7.5 rounded border border-stroke dark:border-strokedark hover:border-primary dark:hover:border-primary bg-white hover:bg-primary text-body hover:text-white dark:text-bodydark dark:hover:text-white text-2xl leading-none px-0 pt-0 pb-0.5;
-}
+} */
 .mapOne .jvm-zoom-btn {
   @apply left-auto top-auto bottom-0;
 }
@@ -165,10 +165,10 @@ span.flatpickr-weekday,
   font-family: sans-serif;;
 }
 
-.map-btn .jvectormap-container .jvectormap-zoomin, 
+/* .map-btn .jvectormap-container .jvectormap-zoomin, 
 .map-btn .jvectormap-container .jvectormap-zoomout {
   @apply bottom-0 top-auto right-0 left-auto flex items-center justify-center w-7.5 h-7.5 rounded border border-stroke dark:border-strokedark hover:border-primary dark:hover:border-primary bg-white hover:bg-primary text-body hover:text-white dark:text-bodydark dark:hover:text-white text-2xl leading-none px-0 pt-0 pb-0.5;
-}
+} */
 
 .map-btn .jvectormap-container .jvectormap-zoomin {
   right: 45px;
@@ -183,5 +183,12 @@ span.flatpickr-weekday,
 @media only screen and (max-width: 600px) {
   .donut-chart-container {
     max-width: 100%;
+  }
+}
+
+
+@media only screen and (max-width: 600px) {
+  .apexcharts-legend {
+    display: none !important;
   }
 }

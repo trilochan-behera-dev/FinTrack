@@ -93,7 +93,7 @@ export const getDataFromAPI = async (request: string, endPoint: string, data: an
 
 }
 
-export const getDeviceType = () => {
+export const GetDeviceType = () => {
     const [DeviceType, setDeviceType] = useState(window?.innerWidth < 768 ? "Mobile" : window?.innerWidth < 1280 ? "Tablet" : "Desktop")
 
     useEffect(() => {

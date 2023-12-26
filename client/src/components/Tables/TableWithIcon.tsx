@@ -45,13 +45,13 @@ const TableWithIcon = ({ header, type, IsApiCall, setIsApiCall = () => { } }: an
     setShowAlert({ title: response.message, status: response.status, isOpen: true });
   }
 
-  const handleStatus = (e) => {
+  const handleStatus = (e:any) => {
     console.log(allData);
     if (!e?.target?.value) {
       console.log(tableData, e?.target?.value)
       setTableData(allData)
     } else {
-      const newdata = allData.filter((data) => +e?.target?.value ? data.paymentStatus : !data.paymentStatus)
+      const newdata = allData.filter((data:any) => +e?.target?.value ? data.paymentStatus : !data.paymentStatus)
       setTableData(newdata);
     }
     setPagination({ start: 0, end: numberOfPages })

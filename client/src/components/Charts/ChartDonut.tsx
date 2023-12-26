@@ -81,24 +81,24 @@ const ChartDonut: React.FC<ChartDonutStatsProps> = ({
         return Math.round(Number(val)) + "%"
       },
     },
-    responsive: [
-      {
-        breakpoint: 2600,
-        options: {
-          chart: {
-            width: 380,
-          },
-        },
-      },
-      {
-        breakpoint: 640,
-        options: {
-          chart: {
-            width: 200,
-          },
-        },
-      },
-    ],
+    // responsive: [
+    //   {
+    //     breakpoint: 2600,
+    //     options: {
+    //       chart: {
+    //         width: 380,
+    //       },
+    //     },
+    //   },
+    //   {
+    //     breakpoint: 640,
+    //     options: {
+    //       chart: {
+    //         width: 200,
+    //       },
+    //     },
+    //   },
+    // ],
   };
 
   return (
@@ -136,7 +136,7 @@ const ChartDonut: React.FC<ChartDonutStatsProps> = ({
       </div>
 
       <div className="mb-2">
-        <div id="ChartDonut" className="mx-auto flex justify-center">
+        <div id="ChartDonut" className="sm:mx-auto sm:flex sm:justify-center">
           <ReactApexChart
             options={options}
             series={state.series.find((ser) => ser > 0) ? state.series : [100]}
