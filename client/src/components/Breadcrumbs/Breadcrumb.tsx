@@ -4,13 +4,11 @@ interface BreadcrumbProps {
   pageName: string;
 }
 const Breadcrumb = ({ pageName }: BreadcrumbProps) => {
-  const router = useRouter();
-  const page = router.pathname.split("/")[1]
 
   return (
     <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-      <h2 className="text-xl font-semibold text-black dark:text-white">
-        {pageName}
+      <h2 className="text-lg font-semibold text-primary dark:text-primarydark capitalize">
+        {pageName ? `${pageName}` : 'Dashboard'}
       </h2>
 
       <nav>
@@ -20,7 +18,7 @@ const Breadcrumb = ({ pageName }: BreadcrumbProps) => {
               Dashboard /
             </Link>
           </li>
-          <li className="font-medium text-primary dark:text-primarydark capitalize"> {page ? `${page}` : 'Overview'}</li>
+          <li className="font-medium text-primary dark:text-primarydark capitalize"> {pageName ? `${pageName}` : 'Overview'}</li>
         </ol>
       </nav>
     </div>

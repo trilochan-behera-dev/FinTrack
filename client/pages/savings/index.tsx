@@ -15,7 +15,7 @@ export default function Savings() {
             <div className="col-span-12 rounded-sm shadow-default">
                 <Forms type="savings" setIsApiCall={setIsApiCall} />
             </div>
-            <ChartMonthly title={"Monthly Savings"} category="savings" barColor={["#135E46"]} IsApiCall={IsApiCall}/>
+            <ChartMonthly title={"Monthly Savings"} category="savings" barColor={["#27C190"]} IsApiCall={IsApiCall}/>
             <ChartDonut title={"Category Wise"} category="savings" IsApiCall={IsApiCall}/>
             <div className="col-span-12 rounded-sm shadow-default">
                 <TableWithIcon header={header} type="savings" IsApiCall={IsApiCall} setIsApiCall={setIsApiCall} />

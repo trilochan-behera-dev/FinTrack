@@ -1,4 +1,3 @@
-import Edit from "@src/components/SVG/Edit";
 import Plus from "@src/components/SVG/Plus";
 import Delete from "@src/components/SVG/Delete";
 import Dropdown from "@src/components/SVG/Dropdown";
@@ -8,6 +7,27 @@ import { useContext, useEffect, useState } from "react";
 import { getDataFromAPI, getRandomColor } from "@src/services/getAllServices";
 import { UserContext } from "@pages/_app";
 import Warnings from "@src/components/Alert/Warning";
+import CalenderSvg from "@src/components/Svg/CalenderSvg";
+import ClosingBalSvg from "@src/components/Svg/ClosingBalSvg";
+import DashboardSvg from "@src/components/Svg/DashboardSvg";
+import EditSvg from "@src/components/Svg/EditSvg";
+import ExpenseSideSvg from "@src/components/Svg/ExpenseSideSvg";
+import Extend from "@src/components/Svg/Extend";
+import EyeSvg from "@src/components/Svg/EyeSvg";
+import IncomeSideSvg from "@src/components/Svg/IncomeSideSvg";
+import IncomeSvg from "@src/components/Svg/IncomeSvg";
+import LeftArrow from "@src/components/Svg/LeftArrow";
+import PlusSvg from "@src/components/Svg/PlusSvg";
+import ProfileSvg from "@src/components/Svg/ProfileSvg";
+import SaveSvg from "@src/components/Svg/SaveSvg";
+import SavingSideSvg from "@src/components/Svg/SavingSideSvg";
+import SettingSvg from "@src/components/Svg/SettingSvg";
+import TotalExpenseSvg from "@src/components/Svg/TotalExpenseSvg";
+import TotalSavingSvg from "@src/components/Svg/TotalSavingSvg";
+import Trash from "@src/components/Svg/Trash";
+import Edit from "@src/components/Svg/Edit";
+import CrossSvg from "@src/components/Svg/CrossSvg";
+import TickSvg from "@src/components/Svg/TickSvg";
 
 export default function Settings() {
     const { setShowAlert } = useContext(UserContext) as any;
@@ -21,7 +41,7 @@ export default function Settings() {
         end: numberOfPages
     })
     const [tableData, setTableData] = useState([]) as any;
-    
+
     const catData = {
         categoryName: "",
         colorCode: getRandomColor(),
@@ -133,7 +153,7 @@ export default function Settings() {
                         <div className="h-16 border-b border-stroke dark:border-strokedark flex justify-between items-center px-8 font-medium text-black dark:text-white">
                             <p>Add Categories</p>
                             <p className="cursor-pointer" onClick={addNewCategory}>
-                                <Plus height={25} weight={25} />
+                                <PlusSvg height={25} />
                             </p>
                         </div>
                         <div className="h-[370px] sm:h-[435px] p-3 sm:p-8 overflow-auto">
@@ -170,10 +190,9 @@ export default function Settings() {
                                                 addCategory(data)
                                             }}
                                         />
-                                        <div className="relative z-20 bg-white dark:bg-form-input">
-
+                                        <div className="relative z-20 bg-white dark:bg-form-input cursor-pointer">
                                             <select
-                                                className="relative w-fit appearance-none rounded border border-stroke bg-transparent py-3 pl-4 pr-10 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input capitalize"
+                                                className="relative w-fit cursor-pointer appearance-none rounded border border-stroke bg-transparent py-3 pl-4 pr-10 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input capitalize"
                                                 onChange={(e) => {
                                                     const data = {
                                                         index: index,
@@ -189,7 +208,7 @@ export default function Settings() {
                                                 ))}
                                             </select>
                                             <span className="absolute top-1/2 right-4 z-10 -translate-y-1/2">
-                                                <Dropdown />
+                                                <Extend />
                                             </span>
                                         </div>
                                     </div>
@@ -197,7 +216,7 @@ export default function Settings() {
                             </div>
                         </div>
                     </div>
-                    <div className={`flex w-full justify-center items-center bg-success font-medium   cursor-pointer h-12  ${newCategory?.length ? "text-bodydark1 dark:text-white" : "text-graydark"}`} onClick={saveCategory}>
+                    <div className={`flex w-full justify-center items-center bg-primary dark:bg-primarydark font-medium   cursor-pointer h-12  ${newCategory?.length ? "text-bodydark1 dark:text-white" : "text-graydark"}`} onClick={saveCategory}>
                         Save
                     </div>
                 </div>
@@ -244,12 +263,12 @@ export default function Settings() {
                                                                             </h5>
                                                                     }
                                                                 </td>
-                                                                <td className="border-b border-[#eee] h-8 p-2 dark:border-strokedark relative">
+                                                                <td className="border-b border-[#eee] h-8 p-2 dark:border-strokedark relative cursor-pointer">
                                                                     {
                                                                         updatecatData?._id && packageItem?._id === updatecatData?._id ?
                                                                             <>
                                                                                 <select
-                                                                                    className=" w-[155px] appearance-none rounded border border-stroke bg-transparent py-1 pl-4 pr-10 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input capitalize"
+                                                                                    className=" w-[155px] appearance-none rounded border border-stroke bg-transparent py-1 pl-4 pr-10 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input capitalize cursor-pointer"
                                                                                     onChange={(e) => setUpdatecatData({ ...updatecatData, categoryType: e?.target?.value })}
                                                                                 >
                                                                                     {['expense', 'savings', 'income'].map((op: any, i: any) => (
@@ -257,11 +276,11 @@ export default function Settings() {
                                                                                     ))}
                                                                                 </select>
                                                                                 <span className="absolute top-1/2 right-[80px] z-10 -translate-y-1/2">
-                                                                                    <Dropdown />
+                                                                                    <Extend />
                                                                                 </span>
                                                                             </>
                                                                             :
-                                                                            <p className={`capitalize w-[160px] ${packageItem?.categoryType === "savings" ? "text-success" : packageItem?.categoryType === "expense" ? "text-danger" : "text-warning"}`}>
+                                                                            <p className={`capitalize font-medium w-[160px] ${packageItem?.categoryType === "savings" ? "text-success" : packageItem?.categoryType === "expense" ? "text-danger" : "text-warning"}`}>
                                                                                 {packageItem.categoryType}
                                                                             </p>
                                                                     }
@@ -280,8 +299,8 @@ export default function Settings() {
                                                                     <div className="flex items-center space-x-3.5 w-[160px]">
                                                                         {
                                                                             updatecatData?._id && packageItem?._id === updatecatData?._id ?
-                                                                                <button className="hover:text-primary">
-                                                                                    <img src="/images/svg/save_icon.svg" alt="text" className="h-6 w-6" onClick={updateCategory} />
+                                                                                <button className="hover:text-primary" onClick={updateCategory}>
+                                                                                    <SaveSvg />
                                                                                 </button>
                                                                                 :
                                                                                 <button className="hover:text-primary" onClick={() => handleUpdate(packageItem)}>
@@ -303,7 +322,7 @@ export default function Settings() {
                                             <div className="flex justify-center items-center h-[61vh]">No Categories Present</div>
                                     }
                                 </div >
-                                <div className="flex w-full gap-2 justify-end px-8 items-center  bg-success font-medium text-bodydark1 h-12 dark:text-white">
+                                <div className="flex w-full gap-2 justify-end px-8 items-center  bg-primary dark:bg-primarydark font-medium text-bodydark1 h-12 dark:text-white">
                                     <Pagination pagination={pagination} setPagination={setPagination} tableData={tableData} numberOfPages={numberOfPages} />
                                 </div>
                             </>

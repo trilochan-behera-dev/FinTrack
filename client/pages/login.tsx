@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import { useRouter } from "next/router";
 import { getDataFromAPI } from "@src/services/getAllServices";
 import { AuthContext } from "./_app";
+import TotalSavingSvg from "@src/components/Svg/TotalSavingSvg";
 
 const Login = () => {
     const { setShowAlert } = useContext(AuthContext) as any;
@@ -27,19 +28,19 @@ const Login = () => {
         <div className="bg-white flex flex-col items-center h-screen justify-center md:px-0 px-3">
             <div className="md:w-[450px] flex flex-col border border-gray-3 rounded-md shadow-md md:px-10 px-5 py-10 gap-y-2">
                 <div className="flex flex-col items-center gap-y-2">
-                    <img src="/images/png/funny-loader.png" />
+                    <TotalSavingSvg />
                     <div className="flex flex-col items-center gap-y-3">
-                        <span className="text-2xl font-normal text-[#202124]">
+                        <span className="text-xl font-medium Capitalize text-dark">
                             Sign In
                         </span>
                         <span className="text-[##202124] font-normal text-base">
-                            to continue to  <span className="text-primary font-bold"> ExTrack </span>  
+                            to continue to  <span className="text-primary font-bold"> ExTrack </span>
                         </span>
                     </div>
                     <input
                         type="email"
                         id="email"
-                        className="w-full h-[50px] bg-gray-50 ring-1 ring-gray-300 text-gray-900 text-sm rounded outline-none focus:ring-[#1a73e8] focus:ring-2 p-2.5 focus:transition-all focus:duration-300 placeholder:font-medium placeholder:text-sm placeholder:text-gray-500"
+                        className="w-full h-[50px] bg-gray-50 ring-1 ring-gray-300 text-gray-900 text-sm rounded outline-none focus:ring-primary focus:ring-2 p-2.5 focus:transition-all focus:duration-300 placeholder:font-medium placeholder:text-sm placeholder:text-gray-500"
                         placeholder="Email"
                         required
                         onChange={(event) =>
@@ -50,7 +51,7 @@ const Login = () => {
                     <input
                         type="password"
                         id="password"
-                        className="w-full h-[50px] bg-gray-50 ring-1 ring-gray-300 text-gray-900 text-sm rounded outline-none focus:ring-[#1a73e8] focus:ring-2 p-2.5 focus:transition-all focus:duration-300 placeholder:font-medium placeholder:text-sm placeholder:text-gray-500"
+                        className="w-full h-[50px] bg-gray-50 ring-1 ring-gray-300 text-gray-900 text-sm rounded outline-none focus:ring-primary focus:ring-2 p-2.5 focus:transition-all focus:duration-300 placeholder:font-medium placeholder:text-sm placeholder:text-gray-500"
                         placeholder="Password"
                         required
                         onChange={(event) =>
@@ -60,7 +61,7 @@ const Login = () => {
                     />
                 </div>
                 <div>
-                    <span className="text-[#1a73e8] text-sm font-semibold cursor-pointer hover:text-blue-800 transition-all duration-500">
+                    <span className="text-primary text-sm font-semibold cursor-pointer hover:text-blue-800 transition-all duration-500">
                         Forgot email?
                     </span>
                 </div>
@@ -68,17 +69,17 @@ const Login = () => {
                     <p className="text-[#5f6368] text-sm sm:whitespace-nowrap">
                         Not your computer? Use Guest mode to sign in privately.
                     </p>
-                    <span className="text-[#1a73e8] text-sm font-semibold cursor-pointer hover:text-blue-800 transition-all duration-500">
+                    <span className="text-primary text-sm font-semibold cursor-pointer hover:text-blue-800 transition-all duration-500">
                         Learn more
                     </span>
                 </div>
                 <div className="flex justify-between items-center mt-5">
                     <Link href="/register">
-                        <span className="text-sm text-[#1a73e8] font-medium cursor-pointer hover:text-blue-800 transition-all duration-500">
+                        <span className="text-sm text-primary font-medium cursor-pointer hover:text-blue-800 transition-all duration-500">
                             Create account
                         </span>
                     </Link>
-                    <button className="text-white w-[80px] h-[38px] font-medium bg-[#1a73e8] rounded text-sm hover:bg-blue-700 transition-all duration-500 flex items-center justify-center" onClick={handleLogin}>
+                    <button className="text-white w-[80px] h-[38px] font-medium bg-primary rounded text-sm hover:bg-blue-700 transition-all duration-500 flex items-center justify-center" onClick={handleLogin}>
                         {isLoading ? (
                             <div role="status">
                                 <svg

@@ -12,7 +12,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <DashboardLayout IsApiCall={IsApiCall}>
-      <ChartBar title={"Total Report"} barColor={["#135E46", '#821432', "#007BBB"]} />
+      <ChartBar title={"Total Report"} barColor={["#27C190", '#e13d69', "#22B3FF"]} />
       <div className="col-span-12 rounded-sm shadow-default">
         <TableWithIcon header={header} type="all" IsApiCall={IsApiCall} setIsApiCall={setIsApiCall}/>
       </div>

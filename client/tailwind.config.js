@@ -13,6 +13,11 @@ module.exports = {
   },
   theme: {
     colors: {
+      primary: "#16a7e3",
+      primarydark: "#8dd6f4",
+      success: "#27C190",
+      warning: "#FFC660",
+      danger: '#e13d69',
       current: "currentColor",
       transparent: "transparent",
       white: "#FFFFFF",
@@ -22,8 +27,6 @@ module.exports = {
       bodydark: "#AEB7C0",
       bodydark1: "#DEE4EE",
       bodydark2: "#8A99AF",
-      primary: "#1E3E38",
-      primarydark: "#06934A",
       secondary: "#80CAEE",
       stroke: "#E2E8F0",
       gray: "#EFF4FB",
@@ -46,9 +49,6 @@ module.exports = {
       "meta-7": "#FF6766",
       "meta-8": "#F0950C",
       "meta-9": "#E5E7EB",
-      success: "#219653",
-      danger: "#D34053",
-      warning: "#FFA70B",
     },
     screens: {
       "2xsm": "375px",
@@ -57,12 +57,6 @@ module.exports = {
       ...defaultTheme.screens,
     },
     extend: {
-      backgroundImage: {
-        video: "url('../images/video/video.png')",
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-      },
       fontSize: {
         "title-xxl": ["44px", "55px"],
         "title-xl": ["36px", "45px"],

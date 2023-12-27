@@ -3,7 +3,7 @@ import { ApexOptions } from "apexcharts";
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import moment from "moment";
-import { getDataFromAPI, GetDeviceType, getSampleArray, getYear } from "@src/services/getAllServices";
+import { getDataFromAPI, GetDeviceType, getMonth, getSampleArray, getYear } from "@src/services/getAllServices";
 import Dropdown from "../SVG/Dropdown";
 const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
 
@@ -23,8 +23,10 @@ const ChartBar: React.FC<ChartBarStatsProps> = ({
   barColor
 }) => {
   const yearList = getYear();
+  const monthList = getMonth();
   const deviceType = GetDeviceType();
   const [year, setYear] = useState(moment().year());
+  const [month, setMonth] = useState(moment().month() + 1);
   const [response, setResponse] = useState() as any
   const [barState, setBarState] = useState<ChartBarState>({
     series: [],
@@ -74,7 +76,7 @@ const ChartBar: React.FC<ChartBarStatsProps> = ({
     },
 
     xaxis: {
-      categories: deviceType != "Mobile" ? ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"] : [moment().format('MMMM')],
+      categories: deviceType != "Mobile" ? ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"] : [moment().month(month - 1).format('MMMM')],
     },
     legend: {
       position: "top",
@@ -116,15 +118,14 @@ const ChartBar: React.FC<ChartBarStatsProps> = ({
         });
       } else {
         dynamicData?.forEach((res: any) => {
-          if (res.month === moment().month() + 1) {
+          if (res.month === month) {
             Object.keys(propertyMap).forEach((prop) => {
               const dataIndex = propertyMap[prop];
-              dataArray[dataIndex].data = [res.data[prop]]
+              dataArray[dataIndex].data = [res.data[prop] || 0]
             })
           }
         });
       }
-
 
       setBarState({ series: dataArray })
     }
@@ -146,31 +147,36 @@ const ChartBar: React.FC<ChartBarStatsProps> = ({
 
   useEffect(() => {
     setValue(response)
-  }, [deviceType])
-  
+  }, [deviceType, month])
+
 
 
   return (
     <div className="col-span-12 rounded-sm border border-stroke bg-white p-8 h-full shadow-default dark:border-strokedark dark:bg-boxdark">
-      <div className="mb-4 justify-between gap-4 flex">
+      <div className="mb-4 justify-between gap-4 flex items-center">
+        <h4 className="text-lg sm:text-xl font-semibold text-black dark:text-white">
+          {title}
+        </h4>
         <div>
-          <h4 className="text-xl font-semibold text-black dark:text-white">
-            {title}
-          </h4>
-        </div>
-        <div>
-          <div className="flex items-center px-3 cursor-pointer">
-            <select
-              className="relative inline-flex appearance-none cursor-pointer bg-transparent py-1 px-2 text-sm font-medium outline-none"
-              onChange={(e) => setYear(Number(e?.target?.value))}
-            >
-              {
-                yearList.map((yr) => (
-                  <option value={yr} selected={moment().year() === yr} key={yr}>{yr}</option>
-                ))
-              }
-            </select>
-            <Dropdown />
+          <div className="flex gap-2">
+            <div className="text-sm font-semibold text-black dark:text-white">
+              <select className="relative md:hidden w-full appearance-none rounded border border-stroke bg-transparent px-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary cursor-pointer" onChange={(e) => setMonth(Number(e?.target?.value))}>
+                {
+                  monthList.map((mth) => (
+                    <option value={mth?.id} selected={moment().month() + 1 === mth?.id} key={mth?.id}>{mth?.name}</option>
+                  ))
+                }
+              </select>
+            </div>
+            <div className="text-sm font-semibold text-black dark:text-white">
+              <select className="relative w-full appearance-none rounded border border-stroke bg-transparent px-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary cursor-pointer" onChange={(e) => setYear(Number(e?.target?.value))}>
+                {
+                  yearList.map((yr) => (
+                    <option value={yr} selected={moment().year() === yr} key={yr}>{yr}</option>
+                  ))
+                }
+              </select>
+            </div>
           </div>
         </div>
       </div>

@@ -35,12 +35,12 @@ export default function Alert({
     <>
       <div
         id="toast-danger"
-        className={`${status ? "border-[#1b996b] bg-[#34D399]" : "border-[#a61c1c] bg-[#F87171]"
+        className={`${status ? "border-success bg-success" : "border-danger bg-danger"
           } fixed top-3 z-999 translate-x-[1%] right-[2%] flex items-center w-full max-w-sm p-3 my-auto text-gray-500 rounded-md shadow-lg border-l-6   border
           }`}
         role="alert"
       >
-        <div className={`mr-5 flex h-8 w-8 items-center justify-center rounded-lg ${status ? "bg-[#1b996b]" : "bg-[#a61c1c]"}   `}>
+        <div className={`mr-5 flex h-8 w-8 items-center justify-center rounded-lg ${status ? "bg-success" : "bg-danger"}   `}>
           {
             status ?
               <svg

@@ -17,8 +17,8 @@ export default function Expense() {
             <div className="col-span-12 rounded-sm shadow-default">
                 <Forms type="expense" setIsApiCall={setIsApiCall} />
             </div>
-            <ChartDaily title={"Daily Expense"} category="expense" barColor={["#3C50E0"]} IsApiCall={IsApiCall} />
-            <ChartMonthly title={"Monthly Expense"} category="expense" barColor={["#80CAEE"]} IsApiCall={IsApiCall} />
+            <ChartDaily title={"Daily Expense"} category="expense" barColor={["#e13d69"]} IsApiCall={IsApiCall} />
+            <ChartMonthly title={"Monthly Expense"} category="expense" barColor={["#e13d69"]} IsApiCall={IsApiCall} />
             <ChartDonut title={"Category Wise"} category="expense" IsApiCall={IsApiCall} />
             <div className="col-span-12 rounded-sm shadow-default">
                 <TableWithIcon header={header} type="expense" IsApiCall={IsApiCall} setIsApiCall={setIsApiCall} />

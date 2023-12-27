@@ -4,7 +4,7 @@ export default function Document() {
     <Html lang="en">
       <Head>
         <title>ExTrack</title>
-        <link rel="icon" href="/images/png/funny-loader.png" />
+        <link rel="icon" href="/images/png/loader.png" />
       </Head>
       <body>
         <Main />

@@ -7,7 +7,7 @@ import { ApexOptions } from "apexcharts";
 import { getDataFromAPI, getDateArray, getMonth, getSampleArray, getYear } from "@src/services/getAllServices";
 
 interface ChartDailyState {
-  series: { data: number[] }[];
+  series: { data: number[], name: string }[];
 }
 interface ChartDailyStatsProps {
   title: String,
@@ -27,7 +27,7 @@ const ChartDaily: React.FC<ChartDailyStatsProps> = ({
   const [selectData, setSelectData] = useState({ year: moment().year(), month: moment().month() + 1 })
   const [shownDates, setShownDates] = useState([]) as any;
   const [barState, setBarState] = useState<ChartDailyState>({
-    series: [{ data: [] }],
+    series: [{ data: [], name: "expense" }],
   });
   const options: ApexOptions = {
     colors: barColor,
@@ -39,24 +39,6 @@ const ChartDaily: React.FC<ChartDailyStatsProps> = ({
         show: false,
       },
     },
-    // responsive: [
-    //   {
-    //     breakpoint: 2600,
-    //     options: {
-    //       chart: {
-    //         width: 1000,
-    //       },
-    //     },
-    //   },
-    //   {
-    //     breakpoint: 640,
-    //     options: {
-    //       chart: {
-    //         width: 1000,
-    //       },
-    //     },
-    //   },
-    // ],
     plotOptions: {
       bar: {
         horizontal: false,
@@ -103,7 +85,7 @@ const ChartDaily: React.FC<ChartDailyStatsProps> = ({
     },
     tooltip: {
       x: {
-        show: false,
+        show: true,
       },
     }
   };
@@ -115,7 +97,7 @@ const ChartDaily: React.FC<ChartDailyStatsProps> = ({
       arry[res.date - 1] = res.price
     })
     setBarState({
-      series: [{ data: arry }],
+      series: [{ data: arry, name: "expense" }],
     })
   }
 
@@ -128,7 +110,7 @@ const ChartDaily: React.FC<ChartDailyStatsProps> = ({
   return (
     <div className="col-span-12 rounded-sm border border-stroke bg-white px-5 pt-7.5 pb-5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5">
       <div className="flex justify-between items-center">
-        <div className="text-xl font-semibold text-black dark:text-white">
+        <div className="text-lg sm:text-xl font-semibold text-black dark:text-white">
           {title}
         </div>
         <div className="flex gap-2">

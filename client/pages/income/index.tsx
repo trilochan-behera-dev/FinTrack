@@ -15,7 +15,7 @@ export default function Income() {
             <div className="col-span-12 rounded-sm shadow-default">
                 <Forms type="income" setIsApiCall={setIsApiCall} />
             </div>
-            <ChartMonthly title={"Monthly Incomes"} category="income" barColor={["#3C50E0"]} IsApiCall={IsApiCall} />
+            <ChartMonthly title={"Monthly Incomes"} category="income" barColor={["#22B3FF"]} IsApiCall={IsApiCall} />
             <ChartDonut title={"Category Wise"} category="income" IsApiCall={IsApiCall} />
             <div className="col-span-12 rounded-sm shadow-default">
                 <TableWithIcon header={header} type="income" IsApiCall={IsApiCall} setIsApiCall={setIsApiCall} />

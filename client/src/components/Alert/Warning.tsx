@@ -18,7 +18,7 @@ export default function Warnings({ onClick, onCancel }: any) {
             <p className="text-md font-semibold">Are you Sure ?</p>
             <p className="text-xl font-medium">You want to delete 🤔</p>
             <div className="flex gap-2 pt-2">
-                <div className="text-sm bg-graydark bg-opacity-25 text-white font-semibold p-2 px-4 cursor-pointer" onClick={onCancel}>Cancel</div>
+                <div className="text-sm bg-graydark  bg-opacity-25 dark:bg-opacity-100 text-white font-semibold p-2 px-4 cursor-pointer" onClick={onCancel}>Cancel</div>
                 <div className="text-sm bg-danger text-white font-semibold p-2 px-4 cursor-pointer" onClick={onClick}>OK</div>
             </div>
         </div>

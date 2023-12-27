@@ -50,19 +50,25 @@ const DropdownUser = () => {
         className="flex items-center gap-4"
         href="#"
       >
-        <span className="hidden text-right lg:block">
-          <span className="block text-sm font-medium text-black dark:text-white">
-            {userinfo?.name}
+        <span className="hidden text-right lg:flex gap-2 ">
+          Welcome,
+          <span className="block text-md font-medium text-primary dark:text-primarydark">
+            {'<'} {userinfo?.name.split(" ")[0]} {'/>'}
           </span>
         </span>
 
-        <span className="h-12 w-12 rounded-full overflow-hidden">
-          <img
-            width={112}
-            height={112}
-            src={userinfo.photo || "/images/png/money.png"}
-            alt="User"
-          />
+        <span className="h-12 w-12 rounded-full overflow-hidden bg-primary bg-opacity-20 text-black flex items-center justify-center uppercase font-bold">
+          {
+            userinfo?.photo ?
+              <img
+                width={112}
+                height={112}
+                src={userinfo.photo}
+                alt="User"
+              />
+              :
+              userinfo?.name.slice(0, 2)
+          }
         </span>
 
         <svg

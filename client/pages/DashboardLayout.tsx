@@ -1,7 +1,12 @@
 import Breadcrumb from "@src/components/Breadcrumbs/Breadcrumb";
 import CardDataStats from "@src/components/CardDataStats";
+import ClosingBalSvg from "@src/components/Svg/ClosingBalSvg";
+import IncomeSvg from "@src/components/Svg/IncomeSvg";
+import TotalExpenseSvg from "@src/components/Svg/TotalExpenseSvg";
+import TotalSavingSvg from "@src/components/Svg/TotalSavingSvg";
 import { getDataFromAPI } from "@src/services/getAllServices";
 import moment from "moment";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function DashboardLayout({
@@ -12,6 +17,7 @@ export default function DashboardLayout({
     IsApiCall: Boolean
 }) {
     const year = moment().year();
+    const pathname = usePathname();
     const [data, setData] = useState({
         income: 0,
         expense: 0,
@@ -22,30 +28,22 @@ export default function DashboardLayout({
         {
             title: "Total Income",
             total: data?.income,
-            rate: "0.5%",
-            status: false,
-            image: "money"
+            icon: ClosingBalSvg
         },
         {
             title: "Total Expense",
             total: data?.expense,
-            rate: "0.5%",
-            status: false,
-            image: "expense"
+            icon: IncomeSvg
         },
         {
             title: "Total Savings",
             total: data?.savings,
-            rate: "0.5%",
-            status: false,
-            image: "savings"
+            icon: TotalExpenseSvg
         },
         {
             title: "Closing Balance",
             total: data?.balance,
-            rate: "0.5%",
-            status: true,
-            image: "balance"
+            icon: TotalSavingSvg
         }
     ];
 
@@ -82,12 +80,12 @@ export default function DashboardLayout({
     }, [year, IsApiCall])
     return (
         <>
-            <Breadcrumb pageName="Dashboard" />
+            <Breadcrumb pageName={pathname.split("/")[1]} />
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5 ">
                 {
                     cardProps.map((card, i) => (
                         <CardDataStats cardData={card} key={i}>
-                            <img src={"./images/png/" + card?.image + ".png"} alt={card?.image} className="h-9" />
+                            <card.icon />
                         </CardDataStats>
                     ))
                 }

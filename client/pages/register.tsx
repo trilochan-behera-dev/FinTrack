@@ -4,6 +4,7 @@ import { useContext, useState } from "react";
 import { useRouter } from "next/router";
 import { getDataFromAPI } from "@src/services/getAllServices";
 import { AuthContext } from "./_app";
+import TotalSavingSvg from "@src/components/Svg/TotalSavingSvg";
 // import Toastify from "../components/Toastify/toast";
 
 const Register = () => {
@@ -29,13 +30,13 @@ const Register = () => {
         <div className="bg-white flex flex-col items-center h-screen justify-center md:px-0 px-3">
             <div className="md:w-[450px] flex flex-col border border-gray-3 rounded-md shadow-md md:px-10 px-5 py-10 gap-y-2">
                 <div className="flex flex-col items-center gap-y-2">
-                    <img src="/images/png/funny-loader.png" />
+                    <TotalSavingSvg />
                     <div className="flex flex-col items-center gap-y-3">
-                        <span className="text-2xl font-normal text-[#202124]">
+                        <span className="text-xl font-medium Capitalize text-dark">
                             Sign Up
                         </span>
-                        <span className="text-[##202124] font-normal text-base">
-                            to continue to <span className="text-primary font-bold"> ExTrack </span>  
+                        <span className="text-currentcolor font-normal text-base">
+                            to continue to <span className="text-primary font-bold"> ExTrack </span>
                         </span>
                     </div>
                     <input
@@ -45,7 +46,7 @@ const Register = () => {
                         value={formData.name}
                         type="text"
                         id="name"
-                        className="w-full h-[50px] bg-gray-50 ring-1 ring-border-gray-3 text-gray-900 text-sm rounded outline-none focus:ring-[#1a73e8] focus:ring-2 p-2.5 focus:transition-all focus:duration-300 placeholder:font-medium placeholder:text-sm placeholder:text-gray-500"
+                        className="w-full h-[50px] bg-gray-50 ring-1 ring-border-gray-3 text-gray-900 text-sm rounded outline-none focus:ring-primary focus:ring-2 p-2.5 focus:transition-all focus:duration-300 placeholder:font-medium placeholder:text-sm placeholder:text-gray-500"
                         placeholder="Name"
                     />
                     <input
@@ -55,7 +56,7 @@ const Register = () => {
                         value={formData.email}
                         type="email"
                         id="email"
-                        className="w-full h-[50px] bg-gray-50 ring-1 ring-gray-300 text-gray-900 text-sm rounded outline-none focus:ring-[#1a73e8] focus:ring-2 p-2.5 focus:transition-all focus:duration-300 placeholder:font-medium placeholder:text-sm placeholder:text-gray-500"
+                        className="w-full h-[50px] bg-gray-50 ring-1 ring-gray-300 text-gray-900 text-sm rounded outline-none focus:ring-primary focus:ring-2 p-2.5 focus:transition-all focus:duration-300 placeholder:font-medium placeholder:text-sm placeholder:text-gray-500"
                         placeholder="Email"
                     />
                     <input
@@ -65,7 +66,7 @@ const Register = () => {
                         value={formData.password}
                         type="password"
                         id="password"
-                        className="w-full h-[50px] bg-gray-50 ring-1 ring-gray-300 text-gray-900 text-sm rounded outline-none focus:ring-[#1a73e8] focus:ring-2 p-2.5 focus:transition-all focus:duration-300 placeholder:font-medium placeholder:text-sm placeholder:text-gray-500"
+                        className="w-full h-[50px] bg-gray-50 ring-1 ring-gray-300 text-gray-900 text-sm rounded outline-none focus:ring-primary focus:ring-2 p-2.5 focus:transition-all focus:duration-300 placeholder:font-medium placeholder:text-sm placeholder:text-gray-500"
                         placeholder="Password"
                     />
                 </div>
@@ -73,18 +74,18 @@ const Register = () => {
                     <p className="text-[#5f6368] text-sm md:whitespace-nowrap">
                         Not your computer? Use Guest mode to sign in privately.
                     </p>
-                    <span className="text-[#1a73e8] text-sm font-semibold cursor-pointer hover:text-blue-800 transition-all duration-500">
+                    <span className="text-primary text-sm font-semibold cursor-pointer hover:text-blue-800 transition-all duration-500">
                         Learn more
                     </span>
                 </div>
                 <div className="flex justify-between items-center mt-5">
                     <Link href="/login">
-                        <span className="text-sm text-[#1a73e8] font-medium cursor-pointer hover:text-blue-800 transition-all duration-500">
+                        <span className="text-sm text-primary font-medium cursor-pointer hover:text-blue-800 transition-all duration-500">
                             Already have an account?
                         </span>
                     </Link>
                     <button
-                        className="text-white w-[80px] h-[38px] font-medium bg-[#1a73e8] rounded text-sm hover:bg-blue-700 transition-all duration-500 flex items-center justify-center"
+                        className="text-white w-[80px] h-[38px] font-medium bg-primary rounded text-sm hover:bg-blue-700 transition-all duration-500 flex items-center justify-center"
                         onClick={handleRegister}
                     >
                         {isLoading ? (
