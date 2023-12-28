@@ -2,7 +2,6 @@ import useColorMode from "@src/hooks/useColorMode";
 
 const DarkModeSwitcher = () => {
   const [colorMode, setColorMode] = useColorMode();
-
   return (
     <li>
       <label

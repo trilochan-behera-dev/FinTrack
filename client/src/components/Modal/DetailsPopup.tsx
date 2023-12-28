@@ -63,7 +63,7 @@ export default function DetailsPopup({ clickItem, setViewPopup, setIsApiCall }: 
                             <label className="mb-3 block font-medium text-black dark:text-white capitalize">
                                 {updateData?.type} Type
                             </label>
-                            <div className="relative z-20 bg-white dark:bg-form-input">
+                            <div className="relative bg-white dark:bg-form-input">
                                 <span className="absolute top-1/2 left-4 z-30 -translate-y-1/2">
                                     <svg
                                         width="20"
@@ -99,7 +99,7 @@ export default function DetailsPopup({ clickItem, setViewPopup, setIsApiCall }: 
                                     <option value="savings" selected={updateData?.type === "savings"}>Savings</option>
                                     <option value="expense" selected={updateData?.type === "expense"}>Expense</option>
                                 </select>
-                                <span className="absolute top-1/2 right-4 z-10 -translate-y-1/2">
+                                <span className="absolute top-1/2 right-4 -translate-y-1/2">
                                     <svg
                                         width="24"
                                         height="24"
@@ -123,7 +123,7 @@ export default function DetailsPopup({ clickItem, setViewPopup, setIsApiCall }: 
                             <label className="mb-3 block font-medium text-black dark:text-white capitalize">
                                 {updateData?.type} Category
                             </label>
-                            <div className="relative z-20 bg-white dark:bg-form-input">
+                            <div className="relative bg-white dark:bg-form-input">
                                 <span className="absolute top-1/2 left-4 z-30 -translate-y-1/2">
                                     <svg
                                         width="20"
@@ -160,7 +160,7 @@ export default function DetailsPopup({ clickItem, setViewPopup, setIsApiCall }: 
                                         <option value={cat?.categoryName?.toLowerCase()} selected={updateData?.category?.toLowerCase() === cat?.categoryName?.toLowerCase()} key={i}>{cat?.categoryName}</option>
                                     ))}
                                 </select>
-                                <span className="absolute top-1/2 right-4 z-10 -translate-y-1/2">
+                                <span className="absolute top-1/2 right-4 -translate-y-1/2">
                                     <svg
                                         width="24"
                                         height="24"
@@ -210,7 +210,7 @@ export default function DetailsPopup({ clickItem, setViewPopup, setIsApiCall }: 
                             <label className="mb-3 block font-medium text-black dark:text-white">
                                 Mode of payment
                             </label>
-                            <div className="relative z-20 bg-white dark:bg-form-input">
+                            <div className="relative bg-white dark:bg-form-input">
                                 <span className="absolute top-1/2 left-4 z-30 -translate-y-1/2">
                                     <Checkbox status={updateData?.paymentStatus} setStatus={(status: any) => setUpdateData({ ...updateData, paymentStatus: status })} />
                                 </span>
@@ -221,7 +221,7 @@ export default function DetailsPopup({ clickItem, setViewPopup, setIsApiCall }: 
                                     <option value="debit card" selected={updateData?.modeOfPayment === "debit card"}>Debit Card</option>
                                     <option value="credit card" selected={updateData?.modeOfPayment === "credit card"}>Credit Card</option>
                                 </select>
-                                <span className="absolute top-1/2 right-4 z-10 -translate-y-1/2">
+                                <span className="absolute top-1/2 right-4 -translate-y-1/2">
                                     <svg
                                         width="24"
                                         height="24"

@@ -1,10 +1,10 @@
 "use client";
 import dynamic from "next/dynamic";
 import moment from "moment";
-const ReactApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
-import { ApexOptions } from "apexcharts";
 import React, { useLayoutEffect, useMemo, useState } from "react";
+import { ApexOptions } from "apexcharts";
 import { getDataFromAPI, getMonth, getYear } from "@src/services/getAllServices";
+const ReactApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 interface ChartDonutState {
   series: number[];
@@ -81,24 +81,6 @@ const ChartDonut: React.FC<ChartDonutStatsProps> = ({
         return Math.round(Number(val)) + "%"
       },
     },
-    // responsive: [
-    //   {
-    //     breakpoint: 2600,
-    //     options: {
-    //       chart: {
-    //         width: 380,
-    //       },
-    //     },
-    //   },
-    //   {
-    //     breakpoint: 640,
-    //     options: {
-    //       chart: {
-    //         width: 200,
-    //       },
-    //     },
-    //   },
-    // ],
   };
 
   return (

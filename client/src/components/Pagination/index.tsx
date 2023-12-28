@@ -1,7 +1,6 @@
 import Extend from "../Svg/Extend";
 
 export default function Pagination({ pagination, setPagination, tableData, numberOfPages }: any) {
-
     return (
         <>
             {

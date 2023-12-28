@@ -1,4 +1,4 @@
-import Dropdown from "../SVG/Dropdown"
+import Dropdown from "../Svg/Dropdown"
 
 export default function Select({ className, onChange, options, selectedData }: any) {
 
@@ -13,7 +13,7 @@ export default function Select({ className, onChange, options, selectedData }: a
                     <option value={op} selected={selectedData?.categoryType === op} className="capitalize" key={i}>{op}</option>
                 ))}
             </select>
-            <span className="absolute top-1/2 right-4 z-10 -translate-y-1/2">
+            <span className="absolute top-1/2 right-4 -translate-y-1/2">
                 <Dropdown />
             </span>
 

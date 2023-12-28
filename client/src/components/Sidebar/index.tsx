@@ -1,18 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import Image from "next/image";
-import SidebarLinkGroup from "./SidebarLinkGroup";
+import CrossSvg from "../Svg/CrossSvg";
+import CalenderSvg from "../Svg/CalenderSvg";
 import DashboardSvg from "../Svg/DashboardSvg";
 import ExpenseSideSvg from "../Svg/ExpenseSideSvg";
 import IncomeSideSvg from "../Svg/IncomeSideSvg";
+import IncomeSvg from "../Svg/IncomeSvg";
+import ProfileSvg from "../Svg/ProfileSvg";
 import SavingSideSvg from "../Svg/SavingSideSvg";
 import SettingSvg from "../Svg/SettingSvg";
-import ProfileSvg from "../Svg/ProfileSvg";
-import CalenderSvg from "../Svg/CalenderSvg";
-import EyeSvg from "../Svg/EyeSvg";
-import IncomeSvg from "../Svg/IncomeSvg";
-import CrossSvg from "../Svg/CrossSvg";
+import { usePathname } from "next/navigation";
+import React, { useEffect, useRef, useState } from "react";
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -28,42 +25,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   const [sidebarExpanded, setSidebarExpanded] = useState(
     storedSidebarExpanded === null ? false : storedSidebarExpanded === "true"
   );
-
-  // close on click outside
-  useEffect(() => {
-    const clickHandler = ({ target }: MouseEvent) => {
-      if (!sidebar.current || !trigger.current) return;
-      if (
-        !sidebarOpen ||
-        sidebar.current.contains(target) ||
-        trigger.current.contains(target)
-      )
-        return;
-      setSidebarOpen(false);
-    };
-    document.addEventListener("click", clickHandler);
-    return () => document.removeEventListener("click", clickHandler);
-  });
-
-  // close if the esc key is pressed
-  useEffect(() => {
-    const keyHandler = ({ keyCode }: KeyboardEvent) => {
-      if (!sidebarOpen || keyCode !== 27) return;
-      setSidebarOpen(false);
-    };
-    document.addEventListener("keydown", keyHandler);
-    return () => document.removeEventListener("keydown", keyHandler);
-  });
-
-  useEffect(() => {
-    localStorage.setItem("sidebar-expanded", sidebarExpanded.toString());
-    if (sidebarExpanded) {
-      document.querySelector("body")?.classList.add("sidebar-expanded");
-    } else {
-      document.querySelector("body")?.classList.remove("sidebar-expanded");
-    }
-  }, [sidebarExpanded]);
-
 
   const SidebarOptions = [
     {
@@ -102,6 +63,57 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
       icon: SettingSvg
     },
   ]
+  
+  // close on click outside
+  useEffect(() => {
+    const clickHandler = ({ target }: MouseEvent) => {
+      if (!sidebar.current || !trigger.current) return;
+      if (
+        !sidebarOpen ||
+        sidebar.current.contains(target) ||
+        trigger.current.contains(target)
+      )
+        return;
+      setSidebarOpen(false);
+    };
+    document.addEventListener("click", clickHandler);
+    return () => document.removeEventListener("click", clickHandler);
+  });
+
+  // close if the esc key is pressed
+  useEffect(() => {
+    const keyHandler = ({ keyCode }: KeyboardEvent) => {
+      if (!sidebarOpen || keyCode !== 27) return;
+      setSidebarOpen(false);
+    };
+    document.addEventListener("keydown", keyHandler);
+    return () => document.removeEventListener("keydown", keyHandler);
+  });
+
+  useEffect(() => {
+    localStorage.setItem("sidebar-expanded", sidebarExpanded.toString());
+    if (sidebarExpanded) {
+      document.querySelector("body")?.classList.add("sidebar-expanded");
+    } else {
+      document.querySelector("body")?.classList.remove("sidebar-expanded");
+    }
+  }, [sidebarExpanded]);
+
+  useEffect(() => {
+    const handleResize = () => {
+        setSidebarOpen(false)
+    };
+
+    // Initial call to set the device type based on the initial window size
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+        window.removeEventListener('resize', handleResize);
+    };
+}, []);
 
   return (
     <aside
@@ -114,7 +126,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
           <Link href="/">
             <IncomeSvg />
           </Link>
-          <p className="text-lg font-bold text-white">ExTrack</p>
+          <p className="text-lg font-bold text-white">FinTrack</p>
         </div>
         {
           sidebarOpen &&

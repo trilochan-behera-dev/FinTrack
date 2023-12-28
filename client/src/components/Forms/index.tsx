@@ -1,11 +1,10 @@
 import moment from "moment";
-import { useContext, useEffect, useState } from "react";
-import Dropdown from "../SVG/Dropdown";
-import Checkbox from "../Checkboxes/Checkbox";
-import { getDataFromAPI } from "@src/services/getAllServices";
-import { UserContext } from "@pages/_app";
+import Dropdown from "../Svg/Dropdown";
 import DashboardSvg from "../Svg/DashboardSvg";
 import SavingSideSvg from "../Svg/SavingSideSvg";
+import { UserContext } from "@pages/_app";
+import { useContext, useEffect, useState } from "react";
+import { getDataFromAPI } from "@src/services/getAllServices";
 
 export default function Forms({ type, setIsApiCall }: any) {
     const { setShowAlert } = useContext(UserContext) as any;
@@ -44,7 +43,6 @@ export default function Forms({ type, setIsApiCall }: any) {
 
     return (
         <div className="grid grid-cols-1 gap-9">
-            {/* <!-- Contact Form --> */}
             <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
                 <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
                     <h3 className="font-medium text-black dark:text-white text-lg">

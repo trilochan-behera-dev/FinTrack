@@ -34,7 +34,7 @@ const Login = () => {
                             Sign In
                         </span>
                         <span className="text-[##202124] font-normal text-base">
-                            to continue to  <span className="text-primary font-bold"> ExTrack </span>
+                            to continue to  <span className="text-primary font-bold"> FinTrack </span>
                         </span>
                     </div>
                     <input

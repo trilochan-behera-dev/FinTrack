@@ -1,49 +1,13 @@
-import { getDataFromAPI, getDateArray } from "@src/services/getAllServices";
-import Breadcrumb from "../Breadcrumbs/Breadcrumb";
-import { useEffect, useState } from "react";
 import moment from "moment";
+import Breadcrumb from "../Breadcrumbs/Breadcrumb";
+import { getDataFromAPI, getDateArray, getWeek } from "@src/services/getAllServices";
+import { useEffect, useState } from "react";
 
 const Calendar = () => {
   const [dateArray, setDateArray] = useState([]) as any;
   const [selectDate, setSelectDate] = useState(0)
   const [data, setData] = useState([]) as any;
-  const week = [
-    {
-      fullName: "Sunday",
-      shortName: "Sun",
-      dayValue: 0,
-    },
-    {
-      fullName: "Monday",
-      shortName: "Mon",
-      dayValue: 1
-    },
-    {
-      fullName: "Tuesday",
-      shortName: "Tue",
-      dayValue: 2
-    },
-    {
-      fullName: "Wednesday",
-      shortName: "Wed",
-      dayValue: 3
-    },
-    {
-      fullName: "Thursday",
-      shortName: "Thu",
-      dayValue: 4
-    },
-    {
-      fullName: "Friday",
-      shortName: "Fri",
-      dayValue: 5
-    },
-    {
-      fullName: "Saturday",
-      shortName: "Sat",
-      dayValue: 6
-    }
-  ]
+  const week = getWeek();
   useEffect(() => {
     let dayOfMonth = getDateArray(moment().month() + 1, moment().year());
     // Set the date to the first day of the month
@@ -99,7 +63,7 @@ const Calendar = () => {
             < tr className="grid grid-cols-7" >
               {
                 dateArray.map((date: any, i: any) => (
-                  <td className={`ease relative h-20 cursor-pointer border border-stroke p-2 transition duration-500 hover:bg-gray dark:border-strokedark dark:hover:bg-meta-4 md:h-25 md:p-4 xl:h-28 `} key={i} onClick={() => setSelectDate(date)}>
+                  <td className={`ease relative h-20 cursor-pointer border border-stroke p-2 transition duration-500 hover:bg-gray dark:border-strokedark dark:hover:bg-meta-3 md:h-25 md:p-4 xl:h-28 `} key={i} onClick={() => setSelectDate(date)}>
                     {date > 0 ?
                       <span className="font-medium text-black dark:text-white flex gap-4">
                         <p className="bg-primary dark:bg-primarydark h-8 w-8 rounded-full flex items-center justify-center text-white text-xs">{date}</p>

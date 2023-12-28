@@ -1,13 +1,46 @@
-import CalenderSvg from "@src/components/Svg/CalenderSvg";
-import DashboardSvg from "@src/components/Svg/DashboardSvg";
-import ExpenseSideSvg from "@src/components/Svg/ExpenseSideSvg";
-import IncomeSideSvg from "@src/components/Svg/IncomeSideSvg";
-import ProfileSvg from "@src/components/Svg/ProfileSvg";
-import SavingSideSvg from "@src/components/Svg/SavingSideSvg";
-import SettingSvg from "@src/components/Svg/SettingSvg";
 import axios from "axios";
 import moment from "moment";
 import { useEffect, useState } from "react";
+
+export const getWeek = () => {
+    return [
+        {
+            fullName: "Sunday",
+            shortName: "Sun",
+            dayValue: 0,
+        },
+        {
+            fullName: "Monday",
+            shortName: "Mon",
+            dayValue: 1
+        },
+        {
+            fullName: "Tuesday",
+            shortName: "Tue",
+            dayValue: 2
+        },
+        {
+            fullName: "Wednesday",
+            shortName: "Wed",
+            dayValue: 3
+        },
+        {
+            fullName: "Thursday",
+            shortName: "Thu",
+            dayValue: 4
+        },
+        {
+            fullName: "Friday",
+            shortName: "Fri",
+            dayValue: 5
+        },
+        {
+            fullName: "Saturday",
+            shortName: "Sat",
+            dayValue: 6
+        }
+    ]
+}
 
 export const getMonth = () => {
     return [
@@ -135,47 +168,3 @@ export const getRandomColor = () => {
     }
     return color;
 }
-
-// export const SidebarOptions = (function () {
-//     return [
-//         {
-//             name: 'Dashboard',
-//             link: "/",
-//             icon: DashboardSvg
-//         },
-//         {
-//             name: 'Expense',
-//             link: "/expense",
-//             icon: ExpenseSideSvg
-//         },
-//         {
-//             name: 'Savings',
-//             link: "/savings",
-//             icon: SavingSideSvg
-//         },
-//         {
-//             name: 'Income',
-//             link: "/income",
-//             icon: IncomeSideSvg
-//         },
-//         {
-//             name: 'Profile',
-//             link: "/profile",
-//             icon: ProfileSvg
-//         },
-//         {
-//             name: 'Calendar',
-//             link: "/calendar",
-//             icon: CalenderSvg
-//         },
-//         {
-//             name: 'Settings',
-//             link: "/settings",
-//             icon: SettingSvg
-//         },
-//         // {
-//         //   name: 'Future Plans',
-//         //   link: "/future"
-//         // }
-//     ]
-// })()

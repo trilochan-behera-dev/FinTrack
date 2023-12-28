@@ -1,11 +1,9 @@
 import Link from "next/link";
+import TotalSavingSvg from "@src/components/Svg/TotalSavingSvg";
 import { useContext, useState } from "react";
-// import { authenticateApi } from "../components/services/UserService";
 import { useRouter } from "next/router";
 import { getDataFromAPI } from "@src/services/getAllServices";
 import { AuthContext } from "./_app";
-import TotalSavingSvg from "@src/components/Svg/TotalSavingSvg";
-// import Toastify from "../components/Toastify/toast";
 
 const Register = () => {
     const { setShowAlert } = useContext(AuthContext) as any;
@@ -36,7 +34,7 @@ const Register = () => {
                             Sign Up
                         </span>
                         <span className="text-currentcolor font-normal text-base">
-                            to continue to <span className="text-primary font-bold"> ExTrack </span>
+                            to continue to <span className="text-primary font-bold"> FinTrack </span>
                         </span>
                     </div>
                     <input

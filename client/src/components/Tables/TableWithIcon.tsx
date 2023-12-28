@@ -1,15 +1,15 @@
 import moment from "moment";
-import Dropdown from "../SVG/Dropdown";
+import Dropdown from "../Svg/Dropdown";
 import DetailsPopup from "../Modal/DetailsPopup";
 import Pagination from "../Pagination";
-import { useContext, useEffect, useState } from "react";
-import { getDataFromAPI } from "@src/services/getAllServices";
-import { UserContext } from "@pages/_app";
 import Warnings from "../Alert/Warning";
 import TickSvg from "../Svg/TickSvg";
 import CrossSvg from "../Svg/CrossSvg";
 import EyeSvg from "../Svg/EyeSvg";
 import Trash from "../Svg/Trash";
+import { useContext, useEffect, useState } from "react";
+import { getDataFromAPI } from "@src/services/getAllServices";
+import { UserContext } from "@pages/_app";
 
 const TableWithIcon = ({ header, type, IsApiCall, setIsApiCall = () => { } }: any) => {
   const [viewPopup, setViewPopup] = useState(false);
@@ -102,7 +102,7 @@ const TableWithIcon = ({ header, type, IsApiCall, setIsApiCall = () => { } }: an
                   <div className="flex gap-2 pt-2 sm:pt-0 justify-end">
                     {
                       type === "all" &&
-                      <div className="relative z-20 bg-white w-1/2 sm:w-full dark:bg-form-input">
+                      <div className="relative bg-white w-1/2 sm:w-full dark:bg-form-input">
                         <select className={`relative  w-full sm:w-fit appearance-none rounded border border-stroke bg-transparent py-2 pl-4 pr-10 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input`}
                           onChange={(e) => setSelectData({ ...selectData, type: e?.target?.value })}
                         >
@@ -111,12 +111,12 @@ const TableWithIcon = ({ header, type, IsApiCall, setIsApiCall = () => { } }: an
                           <option value="savings">Savings</option>
                           <option value="expense">Expense</option>
                         </select>
-                        <span className="absolute top-1/2 right-4 z-10 -translate-y-1/2">
+                        <span className="absolute top-1/2 right-4 -translate-y-1/2">
                           <Dropdown />
                         </span>
                       </div>
                     }
-                    <div className="relative z-20 bg-white w-1/2 sm:w-full dark:bg-form-input">
+                    <div className="relative bg-white w-1/2 sm:w-full dark:bg-form-input">
                       <select className={`relative w-full sm:w-fit appearance-none rounded border border-stroke bg-transparent py-2 pl-4 pr-10 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input`}
                         onChange={handleStatus}
                       >
@@ -124,7 +124,7 @@ const TableWithIcon = ({ header, type, IsApiCall, setIsApiCall = () => { } }: an
                         <option value="1">Paid</option>
                         <option value="0">Unpaid</option>
                       </select>
-                      <span className="absolute top-1/2 right-4 z-10 -translate-y-1/2">
+                      <span className="absolute top-1/2 right-4 -translate-y-1/2">
                         <Dropdown />
                       </span>
                     </div>
@@ -139,7 +139,7 @@ const TableWithIcon = ({ header, type, IsApiCall, setIsApiCall = () => { } }: an
                   tableData?.length ?
                     <table className="w-full py-4 ">
                       <thead>
-                        <tr className="bg-primary bg-opacity-20 dark:bg-meta-4">
+                        <tr className="bg-primary bg-opacity-20 dark:bg-meta-3">
                           {header.map((h: any, i: any) => (
                             <th className={`w-[160px] py-3 text-left font-medium text-black dark:text-white ${i == 0 && "pl-9"} `} key={i}>
                               {h}
@@ -214,8 +214,6 @@ const TableWithIcon = ({ header, type, IsApiCall, setIsApiCall = () => { } }: an
             </div>
           </>
       }
-
-
     </div >
   );
 };

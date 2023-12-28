@@ -1,12 +1,10 @@
 "use client";
-import { ApexOptions } from "apexcharts";
-import React, { useMemo, useState } from "react";
 import dynamic from "next/dynamic";
 import moment from "moment";
+import React, { useMemo, useState } from "react";
+import { ApexOptions } from "apexcharts";
 import { getDataFromAPI, getYear } from "@src/services/getAllServices";
-const ReactApexChart = dynamic(() => import("react-apexcharts"), {
-  ssr: false,
-});
+const ReactApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
 interface ChartMonthlyState {
   series: {
     name: string;

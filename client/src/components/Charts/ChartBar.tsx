@@ -1,10 +1,9 @@
 "use client";
-import { ApexOptions } from "apexcharts";
-import React, { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
 import moment from "moment";
+import dynamic from "next/dynamic";
+import React, { useEffect, useState } from "react";
+import { ApexOptions } from "apexcharts";
 import { getDataFromAPI, GetDeviceType, getMonth, getSampleArray, getYear } from "@src/services/getAllServices";
-import Dropdown from "../SVG/Dropdown";
 const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 interface ChartBarState {

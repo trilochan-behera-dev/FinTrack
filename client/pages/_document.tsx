@@ -3,8 +3,8 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        <title>ExTrack</title>
-        <link rel="icon" href="/images/png/loader.png" />
+        <title>FinTrack</title>
+        <link rel="icon" href="/images/icon/loader.png" />
       </Head>
       <body>
         <Main />

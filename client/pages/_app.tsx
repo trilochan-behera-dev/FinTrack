@@ -1,5 +1,4 @@
 import "@styles/globals.css";
-// import "@styles/data-tables-css.css";
 import RootLayout from './layout';
 import type { AppProps } from 'next/app';
 import { useRouter } from "next/router";

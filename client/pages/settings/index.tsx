@@ -1,33 +1,14 @@
-import Plus from "@src/components/SVG/Plus";
-import Delete from "@src/components/SVG/Delete";
-import Dropdown from "@src/components/SVG/Dropdown";
+import Delete from "@src/components/Svg/Delete";
 import Pagination from "@src/components/Pagination";
 import Breadcrumb from "@src/components/Breadcrumbs/Breadcrumb";
+import Warnings from "@src/components/Alert/Warning";
+import Extend from "@src/components/Svg/Extend";
+import PlusSvg from "@src/components/Svg/PlusSvg";
+import SaveSvg from "@src/components/Svg/SaveSvg";
+import Edit from "@src/components/Svg/Edit";
 import { useContext, useEffect, useState } from "react";
 import { getDataFromAPI, getRandomColor } from "@src/services/getAllServices";
 import { UserContext } from "@pages/_app";
-import Warnings from "@src/components/Alert/Warning";
-import CalenderSvg from "@src/components/Svg/CalenderSvg";
-import ClosingBalSvg from "@src/components/Svg/ClosingBalSvg";
-import DashboardSvg from "@src/components/Svg/DashboardSvg";
-import EditSvg from "@src/components/Svg/EditSvg";
-import ExpenseSideSvg from "@src/components/Svg/ExpenseSideSvg";
-import Extend from "@src/components/Svg/Extend";
-import EyeSvg from "@src/components/Svg/EyeSvg";
-import IncomeSideSvg from "@src/components/Svg/IncomeSideSvg";
-import IncomeSvg from "@src/components/Svg/IncomeSvg";
-import LeftArrow from "@src/components/Svg/LeftArrow";
-import PlusSvg from "@src/components/Svg/PlusSvg";
-import ProfileSvg from "@src/components/Svg/ProfileSvg";
-import SaveSvg from "@src/components/Svg/SaveSvg";
-import SavingSideSvg from "@src/components/Svg/SavingSideSvg";
-import SettingSvg from "@src/components/Svg/SettingSvg";
-import TotalExpenseSvg from "@src/components/Svg/TotalExpenseSvg";
-import TotalSavingSvg from "@src/components/Svg/TotalSavingSvg";
-import Trash from "@src/components/Svg/Trash";
-import Edit from "@src/components/Svg/Edit";
-import CrossSvg from "@src/components/Svg/CrossSvg";
-import TickSvg from "@src/components/Svg/TickSvg";
 
 export default function Settings() {
     const { setShowAlert } = useContext(UserContext) as any;
@@ -142,7 +123,7 @@ export default function Settings() {
         if (fetchData) {
             fetchDatas();
         }
-    }, [fetchData]); // Empty dependency array means this effect runs once after the initial render
+    }, [fetchData]);
 
     return (
         <>
@@ -190,7 +171,7 @@ export default function Settings() {
                                                 addCategory(data)
                                             }}
                                         />
-                                        <div className="relative z-20 bg-white dark:bg-form-input cursor-pointer">
+                                        <div className="relative bg-white dark:bg-form-input cursor-pointer">
                                             <select
                                                 className="relative w-fit cursor-pointer appearance-none rounded border border-stroke bg-transparent py-3 pl-4 pr-10 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input capitalize"
                                                 onChange={(e) => {
@@ -207,7 +188,7 @@ export default function Settings() {
                                                     <option value={op} selected={newCat?.categoryType === op} className="capitalize" key={index} >{op}</option>
                                                 ))}
                                             </select>
-                                            <span className="absolute top-1/2 right-4 z-10 -translate-y-1/2">
+                                            <span className="absolute top-1/2 right-4 -translate-y-1/2">
                                                 <Extend />
                                             </span>
                                         </div>
@@ -234,7 +215,7 @@ export default function Settings() {
                                             <div className="h-[435px] overflow-auto">
                                                 <table className="w-full py-4">
                                                     <thead>
-                                                        <tr className="bg-primary bg-opacity-10 dark:bg-meta-4">
+                                                        <tr className="bg-primary bg-opacity-10 dark:bg-meta-3">
                                                             {header.map((h: any, i: any) => (
                                                                 <th className={`w-[160px] py-2 text-left font-medium text-black dark:text-white ${i == 0 && "pl-9"} `} key={i}>
                                                                     {h}
@@ -275,7 +256,7 @@ export default function Settings() {
                                                                                         <option value={op} selected={packageItem?.categoryType === op} className="capitalize" key={i}>{op}</option>
                                                                                     ))}
                                                                                 </select>
-                                                                                <span className="absolute top-1/2 right-[80px] z-10 -translate-y-1/2">
+                                                                                <span className="absolute top-1/2 right-[80px] -translate-y-1/2">
                                                                                     <Extend />
                                                                                 </span>
                                                                             </>

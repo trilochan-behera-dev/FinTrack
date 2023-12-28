@@ -128,7 +128,7 @@ const Profile = () => {
                       </svg>
                     </span>
                     <input
-                      className="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                      className="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-3 dark:text-white dark:focus:border-primary"
                       type="text"
                       name="fullName"
                       id="fullName"
@@ -146,7 +146,7 @@ const Profile = () => {
                     Phone Number
                   </label>
                   <input
-                    className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                    className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-3 dark:text-white dark:focus:border-primary"
                     type="text"
                     name="phoneNumber"
                     id="phoneNumber"
@@ -190,7 +190,7 @@ const Profile = () => {
                     </svg>
                   </span>
                   <input
-                    className="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                    className="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-3 dark:text-white dark:focus:border-primary"
                     type="email"
                     name="emailAddress"
                     id="emailAddress"
@@ -208,7 +208,7 @@ const Profile = () => {
                   Username
                 </label>
                 <input
-                  className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                  className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-3 dark:text-white dark:focus:border-primary"
                   type="text"
                   name="Username"
                   id="Username"
@@ -257,7 +257,7 @@ const Profile = () => {
                   </span>
 
                   <textarea
-                    className="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                    className="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-3 dark:text-white dark:focus:border-primary"
                     name="bio"
                     id="bio"
                     rows={6}
@@ -311,7 +311,7 @@ const Profile = () => {
               <div
                 id="FileUpload"
                 className={`relative mb-5.5 block w-full cursor-pointer appearance-none rounded border-2 border-dashed ${imageUpdate ? "border-primary" : "border-graydark"}
-                   bg-gray py-4 px-4 dark:bg-meta-4 sm:py-7.5`}
+                   bg-gray py-4 px-4 dark:bg-meta-3 sm:py-7.5`}
               >
                 <input
                   type="file"
@@ -324,12 +324,9 @@ const Profile = () => {
                   <span className="flex h-10 w-10 items-center justify-center rounded-full border border-stroke bg-white dark:border-strokedark dark:bg-boxdark">
                     <UploadSvg color={imageUpdate ? "#16a7e3" : "#333A48"} />
                   </span>
-                  <p>
-                    <span className={`${imageUpdate ? "text-primary" : "text-graydark dark:text-white"}`}>Click to upload</span> or
-                    drag and drop
-                  </p>
+                  <span className={`${imageUpdate ? "text-primary" : "text-graydark dark:text-white"}`}>Click to upload</span>
                   <p className="mt-1.5">SVG, PNG, JPG or GIF</p>
-                  <p>(max, 800 X 800px)</p>
+                  <p>Please click on <span className={`${imageUpdate ? "text-primary" : "text-graydark dark:text-white"}`}> {imageUpdate ? "cancel" : "update"} </span>  to  <span className={`${imageUpdate ? "text-primary" : "text-graydark dark:text-white"}`}> {imageUpdate ? "disable" : "enable"} </span> file choosen.</p>
                 </div>
               </div>
 

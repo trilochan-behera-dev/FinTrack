@@ -1,10 +1,10 @@
 "use client";
 import moment from "moment";
 import dynamic from "next/dynamic";
-const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
 import React, { useMemo, useState } from "react";
 import { ApexOptions } from "apexcharts";
 import { getDataFromAPI, getDateArray, getMonth, getSampleArray, getYear } from "@src/services/getAllServices";
+const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 interface ChartDailyState {
   series: { data: number[], name: string }[];

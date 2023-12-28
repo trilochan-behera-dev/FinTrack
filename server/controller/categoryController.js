@@ -120,7 +120,7 @@ const deleteCategoryById = async (req, res) => {
     if (isDetailsPresent?.length) {
       return res
         .status(404)
-        .json({ message: "Can't Delete, Extrack Data are already present for this category" });
+        .json({ message: "Can't Delete, FinTrack Data are already present for this category" });
     } else {
       const deletedCategory = await Category.findByIdAndDelete(req.params.id);
       if (!deletedCategory) {

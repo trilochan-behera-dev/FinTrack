@@ -1,3 +1,4 @@
+import moment from "moment";
 import Breadcrumb from "@src/components/Breadcrumbs/Breadcrumb";
 import CardDataStats from "@src/components/CardDataStats";
 import ClosingBalSvg from "@src/components/Svg/ClosingBalSvg";
@@ -5,7 +6,6 @@ import IncomeSvg from "@src/components/Svg/IncomeSvg";
 import TotalExpenseSvg from "@src/components/Svg/TotalExpenseSvg";
 import TotalSavingSvg from "@src/components/Svg/TotalSavingSvg";
 import { getDataFromAPI } from "@src/services/getAllServices";
-import moment from "moment";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
