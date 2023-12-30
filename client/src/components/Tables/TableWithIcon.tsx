@@ -191,12 +191,12 @@ const TableWithIcon = ({ header, type, IsApiCall, setIsApiCall = () => { } }: an
                             </td>
                             <td className="border-b w-[160px] border-[#eee] h-8 py-[11px] dark:border-strokedark">
                               <div className="flex w-[160px] items-center space-x-3.5">
-                                <button className="hover:text-primary" onClick={() => handlePopup(packageItem)}>
+                                <div className="hover:text-primary" onClick={() => handlePopup(packageItem)}>
                                   <EyeSvg />
-                                </button>
-                                <button className="hover:text-danger" onClick={() => setIsWarnings({ status: true, id: packageItem._id })}>
+                                </div>
+                                <div className="hover:text-danger" onClick={() => setIsWarnings({ status: true, id: packageItem._id })}>
                                   <Trash />
-                                </button>
+                                </div>
                               </div>
                             </td>
                           </tr>

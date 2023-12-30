@@ -5,15 +5,18 @@ import SavingSideSvg from "../Svg/SavingSideSvg";
 import { UserContext } from "@pages/_app";
 import { useContext, useEffect, useState } from "react";
 import { getDataFromAPI } from "@src/services/getAllServices";
+import Button from "../Button";
 
 export default function Forms({ type, setIsApiCall }: any) {
     const { setShowAlert } = useContext(UserContext) as any;
     const initialData = { name: "", type: type, category: "", selectedDate: moment().format("YYYY-MM-DD"), price: 0, modeOfPayment: "cash", paymentStatus: true, details: "" }
     const [details, setDetails] = useState(initialData);
     const [category, setCategory] = useState() as any;
+    const [loading, setLoading] = useState(false)
 
 
     const handleSave = async () => {
+        setLoading(true)
         if (!details?.name.trim() || !details?.category || !details?.price) {
             setShowAlert({ title: "Please fill all the details", status: false, isOpen: true })
         } else {
@@ -24,6 +27,7 @@ export default function Forms({ type, setIsApiCall }: any) {
             }
             setShowAlert({ title: response.message, status: response.status, isOpen: true })
         }
+        setLoading(false)
     }
     const fetchDatas = async () => {
         try {
@@ -106,9 +110,13 @@ export default function Forms({ type, setIsApiCall }: any) {
                             </span>
                         </div>
                     </div>
-                    <div className="flex w-full justify-center cursor-pointer rounded bg-primary p-3 font-medium text-gray capitalize" onClick={handleSave} >
-                        Save
-                    </div>
+                    <Button
+                        label={"Save"}
+                        type={"submit"}
+                        className="flex w-full justify-center cursor-pointer rounded bg-primary p-3 font-medium text-gray capitalize"
+                        handleClick={handleSave}
+                        loading={loading}
+                    />
                 </div>
             </div>
         </div >

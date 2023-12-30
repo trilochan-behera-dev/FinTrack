@@ -4,6 +4,7 @@ import { getDataFromAPI } from "@src/services/getAllServices";
 import { UserContext } from "@pages/_app";
 import UploadSvg from "@src/components/Svg/UploadSvg";
 import Breadcrumb from "@src/components/Breadcrumbs/Breadcrumb";
+import Button from "@src/components/Button";
 
 const Profile = () => {
   const { userinfo, setUserinfo, setShowAlert } = useContext(UserContext) as any;
@@ -268,12 +269,14 @@ const Profile = () => {
                 </div>
               </div>
               <div className="flex justify-end gap-4.5">
-                <button
+                <Button
+                  label={"Save"}
+                  type={"submit"}
+                  color={"bg-primary"}
+                  txtcolor="#ffffff"
                   className="flex justify-center rounded bg-primary py-2 px-6 font-medium text-gray hover:bg-opacity-95"
-                  onClick={handleSaveProfile}
-                >
-                  Save
-                </button>
+                  handleClick={handleSaveProfile}
+                />
               </div>
             </div>
           </div>
@@ -301,9 +304,14 @@ const Profile = () => {
                     Edit your photo
                   </span>
                   <span className="flex gap-2.5">
-                    <button className="text-sm hover:text-primary" onClick={() => setImageUpdate(!imageUpdate)}>
-                      {imageUpdate ? "Cancel" : "Update"}
-                    </button>
+                    <Button
+                      label={imageUpdate ? "Cancel" : "Update"}
+                      type={"submit"}
+                      color={"bg-primary"}
+                      txtcolor="#ffffff"
+                      className="text-sm hover:text-primary"
+                      handleClick={() => setImageUpdate(!imageUpdate)}
+                    />
                   </span>
                 </div>
               </div>
@@ -331,20 +339,19 @@ const Profile = () => {
               </div>
 
               <div className="flex justify-end gap-4.5">
-                <button
+                <Button
+                  label={"Cancel"}
+                  type={"submit"}
                   className="flex justify-center rounded border border-stroke py-2 px-6 font-medium text-black hover:shadow-1 dark:border-strokedark dark:text-white"
-                  onClick={handleCancel}
-                >
-                  Cancel
-                </button>
-                <button
+                  handleClick={handleCancel}
+                />
+                <Button
+                  label={"Save"}
+                  type={"submit"}
                   className="flex justify-center rounded bg-primary py-2 px-6 font-medium text-gray hover:bg-opacity-95"
-                  onClick={uploadPhoto}
-                >
-                  Save
-                </button>
+                  handleClick={uploadPhoto}
+                />
               </div>
-
               {previewImage && <img src={previewImage} alt="Selected Image" className="h-40 w-80 object-contain" />}
             </div>
           </div>

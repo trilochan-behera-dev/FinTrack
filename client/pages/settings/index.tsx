@@ -280,18 +280,18 @@ export default function Settings() {
                                                                     <div className="flex items-center space-x-3.5 w-[160px]">
                                                                         {
                                                                             updatecatData?._id && packageItem?._id === updatecatData?._id ?
-                                                                                <button className="hover:text-primary" onClick={updateCategory}>
+                                                                                <div className="hover:text-primary" onClick={updateCategory}>
                                                                                     <SaveSvg />
-                                                                                </button>
+                                                                                </div>
                                                                                 :
-                                                                                <button className="hover:text-primary" onClick={() => handleUpdate(packageItem)}>
+                                                                                <div className="hover:text-primary" onClick={() => handleUpdate(packageItem)}>
                                                                                     <Edit />
-                                                                                </button>
+                                                                                </div>
                                                                         }
 
-                                                                        <button className="hover:text-primary" onClick={() => setIsWarnings({ status: true, id: packageItem._id })}>
+                                                                        <div className="hover:text-primary" onClick={() => setIsWarnings({ status: true, id: packageItem._id })}>
                                                                             <Delete height={20} weight={20} />
-                                                                        </button>
+                                                                        </div>
                                                                     </div>
                                                                 </td>
                                                             </tr>
