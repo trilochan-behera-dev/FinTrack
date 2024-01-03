@@ -4,6 +4,7 @@ import type { AppProps } from 'next/app';
 import { useRouter } from "next/router";
 import { createContext, useEffect, useState } from "react";
 import Alert from "@src/components/Alert";
+import Head from "next/head";
 
 // Example of creating UserContext
 export const UserContext = createContext({
@@ -41,11 +42,25 @@ export default function App({ Component, pageProps }: AppProps) {
     }
   }, [router]);
 
-
+  useEffect(() => {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker
+        .register('/service-worker.js')
+        .then((registration) => {
+          console.log('Service Worker registered with scope:', registration.scope);
+        })
+        .catch((error) => {
+          console.error('Service Worker registration failed:', error);
+        });
+    }
+  }, []);
   
   return (
     <>
-
+      <Head>
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#000000" />
+      </Head>
       {router.pathname === "/login" || router.pathname === "/register" ? (
         <AuthContext.Provider value={{ setShowAlert }}>
           <Component {...pageProps} />
