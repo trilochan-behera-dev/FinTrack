@@ -1,4 +1,4 @@
-# 🚀 FInTrack - Finance Tracker Web App
+# 🚀 FinTrack - Finance Tracker Web App
 
 FInTrack is a cutting-edge 💸 Finance Tracker web application developed with a focus on performance, security, and code efficiency. It leverages a robust technology stack, encompassing both frontend and backend technologies, to provide users with a seamless financial management experience.
 
