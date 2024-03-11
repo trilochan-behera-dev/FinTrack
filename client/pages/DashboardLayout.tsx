@@ -42,7 +42,7 @@ export default function DashboardLayout({
         },
         {
             title: "Closing Balance",
-            total: data?.balance,
+            total: data?.income - data?.expense - data?.savings,
             icon: TotalSavingSvg
         }
     ];
