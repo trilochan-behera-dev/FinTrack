@@ -291,7 +291,7 @@ const Profile = () => {
             <div className="p-7">
 
               <div className="mb-4 flex items-center gap-3">
-                <div className="h-12 w-12 rounded-full overflow-hidden bg-primary bg-opacity-20 text-black flex items-center justify-center uppercase font-bold">
+                <div className="h-12 w-12 rounded-full overflow-hidden bg-primary bg-opacity-20 text-black dark:text-white flex items-center justify-center uppercase font-bold">
                   {
                     userinfo?.photo ?
                       <img className="object-cover w-full h-full" src={user?.photo} alt="profile" />
