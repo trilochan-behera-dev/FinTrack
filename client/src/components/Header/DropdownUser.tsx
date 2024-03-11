@@ -59,7 +59,7 @@ const DropdownUser = () => {
           </span>
         </span>
 
-        <span className="h-12 w-12 rounded-full overflow-hidden bg-primary bg-opacity-20 text-black flex items-center justify-center uppercase font-bold">
+        <span className="h-12 w-12 rounded-full overflow-hidden bg-primary bg-opacity-20 text-black dark:text-white flex items-center justify-center uppercase font-bold">
           {
             userinfo?.photo ?
               <img
