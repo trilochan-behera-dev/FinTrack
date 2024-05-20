@@ -76,7 +76,7 @@ const TableWithIcon = ({ header, type, IsApiCall, setIsApiCall = () => { } }: an
 
   useEffect(() => {
     fetchDatas();
-  }, [IsApiCall]);
+  }, [IsApiCall,selectData]);
 
 
   return (
@@ -116,19 +116,6 @@ const TableWithIcon = ({ header, type, IsApiCall, setIsApiCall = () => { } }: an
                         </span>
                       </div>
                     }
-                    <div className="relative bg-white w-1/2 sm:w-full dark:bg-form-input">
-                      <select className={`relative w-full sm:w-fit appearance-none rounded border border-stroke bg-transparent py-2 pl-4 pr-10 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input`}
-                        onChange={handleStatus}
-                      >
-                        <option value="">All</option>
-                        <option value="1">Paid</option>
-                        <option value="0">Unpaid</option>
-                      </select>
-                      <span className="absolute top-1/2 right-4 -translate-y-1/2">
-                        <Dropdown />
-                      </span>
-                    </div>
-
                   </div>
                 </div>
             }

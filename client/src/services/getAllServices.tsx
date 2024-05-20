@@ -84,7 +84,7 @@ export const getDateArray = (month = moment().month() + 1, year = moment().year(
 
 export const getDataFromAPI = async (request: string, endPoint: string, data: any = null) => {
     try {
-        const url = process.env.NEXT_PUBLIC_BACKEND_URL;
+        const url = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:5000";
         const localStorageData = localStorage.getItem('login-user');
         const { token } = localStorageData ? JSON.parse(localStorageData) : "";
         let headers;
