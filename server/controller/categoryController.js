@@ -48,7 +48,7 @@ const createCategory = async (req, res) => {
       }
 
       // Data in the database
-      const databaseData = await Category.find();
+      const databaseData = await Category.find({user: req.userId});
       // Identify entries not present in the database
       const newEntries = filterdata.filter(
         (entry) =>
