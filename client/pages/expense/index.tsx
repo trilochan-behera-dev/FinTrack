@@ -4,22 +4,19 @@ import ChartDonut from "@src/components/Charts/ChartDonut";
 import ChartMonthly from "@src/components/Charts/ChartMonthly";
 import Forms from "@src/components/Forms";
 import TableWithIcon from "@src/components/Tables/TableWithIcon";
+import { header } from "@src/util/Data";
 import { useState } from "react";
 
 export default function Expense() {
-    const header = [
-        'Date', 'Price', 'Details', 'Category', 'Status', 'Action'
-    ]
     const [IsApiCall, setIsApiCall] = useState(false);
-
     return (
         <DashboardLayout IsApiCall={IsApiCall}>
-            <div className="col-span-12 rounded-sm shadow-default">
-                <Forms type="expense" setIsApiCall={setIsApiCall} />
-            </div>
             <ChartDaily title={"Daily Expense"} category="expense" barColor={["#e13d69"]} IsApiCall={IsApiCall} />
             <ChartMonthly title={"Monthly Expense"} category="expense" barColor={["#e13d69"]} IsApiCall={IsApiCall} />
             <ChartDonut title={"Category Wise"} category="expense" IsApiCall={IsApiCall} />
+            <div className="col-span-12 rounded-sm shadow-default">
+                <Forms type="expense" setIsApiCall={setIsApiCall} />
+            </div>
             <div className="col-span-12 rounded-sm shadow-default">
                 <TableWithIcon header={header} type="expense" IsApiCall={IsApiCall} setIsApiCall={setIsApiCall} />
             </div>

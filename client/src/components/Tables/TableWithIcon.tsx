@@ -3,8 +3,6 @@ import Dropdown from "../Svg/Dropdown";
 import DetailsPopup from "../Modal/DetailsPopup";
 import Pagination from "../Pagination";
 import Warnings from "../Alert/Warning";
-import TickSvg from "../Svg/TickSvg";
-import CrossSvg from "../Svg/CrossSvg";
 import EyeSvg from "../Svg/EyeSvg";
 import Trash from "../Svg/Trash";
 import { useContext, useEffect, useState } from "react";
@@ -164,16 +162,6 @@ const TableWithIcon = ({ header, type, IsApiCall, setIsApiCall = () => { } }: an
                             <td className="border-b w-[160px] border-[#eee] h-8 py-[11px] dark:border-strokedark">
                               <p className="text-black w-[160px] dark:text-white">
                                 {packageItem.category}
-                              </p>
-                            </td>
-                            <td className="border-b w-[160px] border-[#eee] h-8 py-[11px] dark:border-strokedark">
-                              <p
-                                className={`inline-flex rounded-full justify-center border text-4xl text-[12px] font-bold ${packageItem.paymentStatus
-                                  ? "text-success border-success p-1"
-                                  : "text-warning border-warning p-1.5"
-                                  }`}
-                              >
-                                {packageItem.paymentStatus ? <TickSvg /> : <CrossSvg />}
                               </p>
                             </td>
                             <td className="border-b w-[160px] border-[#eee] h-8 py-[11px] dark:border-strokedark">

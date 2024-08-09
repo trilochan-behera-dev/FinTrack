@@ -1,26 +1,26 @@
 import moment from "moment";
 import Dropdown from "../Svg/Dropdown";
 import DashboardSvg from "../Svg/DashboardSvg";
-import SavingSideSvg from "../Svg/SavingSideSvg";
 import { UserContext } from "@pages/_app";
 import { useContext, useEffect, useState } from "react";
 import { getDataFromAPI } from "@src/services/getAllServices";
 import Button from "../Button";
+import { selectType } from "@src/util/Data";
 
 export default function Forms({ type, setIsApiCall }: any) {
     const { setShowAlert } = useContext(UserContext) as any;
     const initialData = { name: "", type: type, category: "", selectedDate: moment().format("YYYY-MM-DD"), price: 0, modeOfPayment: "cash", paymentStatus: true, details: "" }
     const [details, setDetails] = useState(initialData);
     const [category, setCategory] = useState() as any;
-    const [loading, setLoading] = useState(false)
-
-
+    const [loading, setLoading] = useState(false);
+    const [selectedType, setSelectedType] = useState("")
     const handleSave = async () => {
         setLoading(true)
         if (!details?.name.trim() || !details?.category || !details?.price) {
             setShowAlert({ title: "Please fill all the details", status: false, isOpen: true })
         } else {
-            const response = await getDataFromAPI('post', 'api/details', details);
+            const data={...details, type: type === "all" ? selectedType : type}
+            const response = await getDataFromAPI('post', 'api/details',data );
             if (response.status) {
                 setDetails(initialData);
                 setIsApiCall(true);
@@ -29,9 +29,9 @@ export default function Forms({ type, setIsApiCall }: any) {
         }
         setLoading(false)
     }
-    const fetchDatas = async () => {
+    const fetchDatas = async (categoryType:string) => {
         try {
-            const response = await getDataFromAPI('get', `api/category/${details?.type}`);
+            const response = await getDataFromAPI('get', `api/category/${categoryType}`);
             if (response.status) {
                 setCategory(response?.data);
             }
@@ -40,10 +40,12 @@ export default function Forms({ type, setIsApiCall }: any) {
         }
     };
     useEffect(() => {
-        if (details?.type) {
-            fetchDatas();
+        if(type==="all" && selectedType){
+            fetchDatas(selectedType);
+        }else if (details?.type){
+            fetchDatas(details?.type);
         }
-    }, [details?.type]);
+    }, [details?.type, selectedType]);
 
     return (
         <div className="grid grid-cols-1 gap-9">
@@ -82,6 +84,25 @@ export default function Forms({ type, setIsApiCall }: any) {
                             onChange={(e) => setDetails({ ...details, price: Number(e?.target?.value) })}
                         />
                     </div>
+                    {
+                        type === "all" &&(
+                            <div className="relative bg-white dark:bg-form-input">
+                            <span className="absolute top-[60%] left-4 -translate-y-1/2">
+                                <DashboardSvg />
+                            </span>
+                            <select className={`relative w-full appearance-none rounded border border-stroke bg-transparent py-3 px-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input`} onChange={(e) => setSelectedType(e?.target?.value)}>
+                                <option>Select Type</option>
+                                {selectType?.map((type: any, i: any) => (
+                                    <option value={type} selected={type === selectedType} key={i}>{type}</option>
+                                ))}
+                            </select>
+                            <span className="absolute top-1/2 right-4 -translate-y-1/2">
+                                <Dropdown />
+                            </span>
+                        </div>
+                        )
+                       
+                    }
                     <div className="relative bg-white dark:bg-form-input">
                         <span className="absolute top-[60%] left-4 -translate-y-1/2">
                             <DashboardSvg />
@@ -95,20 +116,6 @@ export default function Forms({ type, setIsApiCall }: any) {
                         <span className="absolute top-1/2 right-4 -translate-y-1/2">
                             <Dropdown />
                         </span>
-                    </div>
-                    <div className="relative py-2 md:py-0 ">
-                        <div className="relative bg-white dark:bg-form-input">
-                            <span className="absolute top-[50%] left-4 -translate-y-1/2">
-                                <SavingSideSvg />
-                            </span>
-                            <select className={`relative w-full appearance-none rounded border border-stroke bg-transparent py-3 px-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input`} onChange={(e) => setDetails({ ...details, paymentStatus: e?.target?.value === "1" ? true : false })}>
-                                <option value={"1"} selected={details?.paymentStatus}>Paid</option>
-                                <option value={"0"} selected={!details?.paymentStatus}>UnPaid</option>
-                            </select>
-                            <span className="absolute top-1/2 right-4 -translate-y-1/2">
-                                <Dropdown />
-                            </span>
-                        </div>
                     </div>
                     <Button
                         label={"Save"}

@@ -55,7 +55,7 @@ const DropdownUser = () => {
         <span className="hidden text-right lg:flex gap-2 ">
           Welcome,
           <span className="block text-md font-medium text-primary dark:text-primarydark">
-            {'<'} {userinfo?.name.split(" ")[0]} {'/>'}
+            {'<'} {userinfo?.name?.split(" ")[0]} {'/>'}
           </span>
         </span>
 
@@ -69,7 +69,7 @@ const DropdownUser = () => {
                 alt="User"
               />
               :
-              userinfo?.name.slice(0, 2)
+              userinfo?.name?.slice(0, 2)
           }
         </span>
 
