@@ -15,6 +15,7 @@ const TableWithIcon = ({ header, type, IsApiCall, setIsApiCall = () => { } }: an
   const [clickItem, setClickItem] = useState();
   const [allData, setAllData] = useState([]) as any;
   const [tableData, setTableData] = useState([]) as any;
+  const [category, setCategory] = useState() as any;
   const numberOfPages = 10;
   const [selectData, setSelectData] = useState({
     "type": type === "all" ? "" : type,
@@ -47,11 +48,11 @@ const TableWithIcon = ({ header, type, IsApiCall, setIsApiCall = () => { } }: an
     setShowAlert({ title: response.message, status: response.status, isOpen: true });
   }
 
-  const handleStatus = (e: any) => {
+  const handleCategory = (e: any) => {
     if (!e?.target?.value) {
       setTableData(allData)
     } else {
-      const newdata = allData.filter((data: any) => +e?.target?.value ? data.paymentStatus : !data.paymentStatus)
+      const newdata = allData.filter((data: any) =>e?.target?.value === data.category)
       setTableData(newdata);
     }
     setPagination({ start: 0, end: numberOfPages })
@@ -76,7 +77,19 @@ const TableWithIcon = ({ header, type, IsApiCall, setIsApiCall = () => { } }: an
     fetchDatas();
   }, [IsApiCall,selectData]);
 
-
+  const fetchCategory = async (categoryType:string) => {
+      try {
+          const response = await getDataFromAPI('get', `api/category/${categoryType}`);
+          if (response.status) {
+              setCategory(response?.data);
+          }
+      } catch (error) {
+          console.error('Error fetching data:', error);
+      }
+  };
+  useEffect(() => {
+    if(type) fetchCategory(type);
+  }, [type]);
   return (
     <div className={`rounded-sm border border-stroke bg-white ${!isWarnings?.status ? "pt-4" : "h-[600px] flex justify-center items-center"} shadow-default dark:border-strokedark dark:bg-boxdark`}>
       {
@@ -99,7 +112,7 @@ const TableWithIcon = ({ header, type, IsApiCall, setIsApiCall = () => { } }: an
                   </div>
                   <div className="flex gap-2 pt-2 sm:pt-0 justify-end">
                     {
-                      type === "all" &&
+                      type === "all" ?
                       <div className="relative bg-white w-1/2 sm:w-full dark:bg-form-input">
                         <select className={`relative  w-full sm:w-fit appearance-none rounded border border-stroke bg-transparent py-2 pl-4 pr-10 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input`}
                           onChange={(e) => setSelectData({ ...selectData, type: e?.target?.value })}
@@ -112,7 +125,20 @@ const TableWithIcon = ({ header, type, IsApiCall, setIsApiCall = () => { } }: an
                         <span className="absolute top-1/2 right-4 -translate-y-1/2">
                           <Dropdown />
                         </span>
-                      </div>
+                      </div>:
+                      <div className="relative bg-white w-1/2 sm:w-full dark:bg-form-input">
+                        <select className={`relative  w-full sm:w-fit appearance-none rounded border border-stroke bg-transparent py-2 pl-4 pr-10 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input`}
+                          onChange={(e) => handleCategory(e)}
+                        >
+                          <option>Select Category</option>
+                              {category?.map((cat: any, i: any) => (
+                                  <option value={cat?.categoryName} key={i}>{cat?.categoryName}</option>
+                              ))}
+                        </select>
+                        <span className="absolute top-1/2 right-4 -translate-y-1/2">
+                          <Dropdown />
+                        </span>
+                    </div>
                     }
                   </div>
                 </div>
