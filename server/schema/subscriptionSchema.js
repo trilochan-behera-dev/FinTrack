@@ -8,22 +8,26 @@ const savingSchema = new mongoose.Schema(
     },
     type: {
       type: String,
-      default: 'saving', // Default value
+      default: 'subscription', // Default value
     },
-    category: {
-      type: String,
-      required: true,
+    startDate:{
+      type:Date,
+      required:true
     },
-    date: {
-      type: Date,
-      required: true,
+    cycle:{
+      type:String,
+      required:true,
     },
+    endDate:{
+      type:Date,
+    },  	
     price: {
       type: Number,
       required: true,
     },
     details: {
       type: String,
+      required: true,
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,

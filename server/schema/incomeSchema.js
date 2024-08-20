@@ -1,10 +1,10 @@
-const mongoDB = require("mongoose");
+const mongoose = require("mongoose");
 
-const incomeSchema = new mongoDB.Schema(
+const incomeSchema = new mongoose.Schema(
   {
-    name: {
+    title: {
       type: String,
-      require: true,
+      required: true,
     },
     type: {
       type: String,
@@ -12,38 +12,21 @@ const incomeSchema = new mongoDB.Schema(
     },
     category: {
       type: String,
-      require: true,
+      required: true,
     },
     date: {
-      type: Number,
-      require: true,
-    },
-    month: {
-      type: Number,
-      require: true,
-    },
-    year: {
-      type: Number,
-      require: true,
+      type: Date,
+      required: true,
     },
     price: {
       type: Number,
-      require: true,
-    },
-    modeOfPayment: {
-      type: String,
-      require: true,
-    },
-    paymentStatus: {
-      type: Boolean,
-      require: true,
+      required: true,
     },
     details: {
       type: String,
-      require: true,
     },
     user: {
-      type: mongoDB.Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
@@ -54,4 +37,4 @@ const incomeSchema = new mongoDB.Schema(
   }
 );
 
-module.exports = mongoDB.model("Income", incomeSchema);
+module.exports = mongoose.model("Income", incomeSchema);

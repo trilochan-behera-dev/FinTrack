@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const savingSchema = new mongoose.Schema(
+const creditSchema = new mongoose.Schema(
   {
     title: {
       type: String,
@@ -8,11 +8,7 @@ const savingSchema = new mongoose.Schema(
     },
     type: {
       type: String,
-      default: 'saving', // Default value
-    },
-    category: {
-      type: String,
-      required: true,
+      default: 'credit', // Default value
     },
     date: {
       type: Date,
@@ -24,6 +20,11 @@ const savingSchema = new mongoose.Schema(
     },
     details: {
       type: String,
+      required: true,
+    },
+    isPaid:{
+      type:Boolean,
+      default:false,
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,
@@ -37,4 +38,4 @@ const savingSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("saving", savingSchema);
+module.exports = mongoose.model("credit", creditSchema);

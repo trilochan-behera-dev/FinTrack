@@ -6,6 +6,7 @@ const userRouter = require("./router/userRouter");
 const chartRouter = require("./router/chartRouter");
 const detailsRouter = require("./router/detailsRouter");
 const categoryRouter = require("./router/categoryRouter");
+const financeRouter = require("./router/financeRouter");
 
 dotenv.config();
 const app = express();
@@ -18,6 +19,7 @@ app.use("/api", userRouter);
 app.use("/api", chartRouter);
 app.use("/api", detailsRouter);
 app.use("/api", categoryRouter);
+app.use("/api", financeRouter);
 
 // Start the server
 app.listen(port, () => {
